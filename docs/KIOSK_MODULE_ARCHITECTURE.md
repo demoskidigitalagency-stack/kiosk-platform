@@ -266,7 +266,6 @@ Learning & Academy consolidates Sync CRM Academy, Kiosk CRM 2 Learning/Course/My
 - Recent Learning Activity
 
 ### Academy
-Academy is the branded learner-facing portal rather than a separate learning engine.
 - Academy Home
 - Course Catalog
 - Categories
@@ -302,7 +301,6 @@ Academy is the branded learner-facing portal rather than a separate learning eng
 - Completion Rules
 
 ### Students
-Students are learning profiles linked to the canonical CRM person/contact rather than a duplicate contact database.
 - All Students
 - Student Profiles
 - Enrollments
@@ -316,7 +314,6 @@ Students are learning profiles linked to the canonical CRM person/contact rather
 Identity flow: CRM Contact → Student Profile → Enrollment → Course Progress
 
 ### My Learning
-Learner-facing workspace.
 - My Courses
 - Continue Learning
 - Completed Courses
@@ -333,10 +330,7 @@ Learner-facing workspace.
 - Revoke Certificate
 - Certificate History
 
-Certificate flow: Course Completion → Eligibility Check → Generate Certificate → Student Access → Verification
-
 ### Affiliates
-Course-focused affiliate sales live here initially, but the underlying affiliate capability should be reusable later for broader Commerce/Marketing use.
 - Affiliates
 - Affiliate Applications
 - Referral Links
@@ -356,40 +350,143 @@ Course-focused affiliate sales live here initially, but the underlying affiliate
 - Certificate Issuance
 - Affiliate Performance
 
-Learning exposes contextual analytics, while Reports & Analytics remains the canonical cross-business BI layer and receives Learning Analytics as a reporting domain.
-
-### Learning boundaries and handoffs
-- CRM owns canonical contact identity; Learning owns student/enrollment/progress state.
-- Build owns public course/academy page-building infrastructure.
-- Commerce owns checkout, order and payment transaction processing.
-- Learning owns curriculum, enrollment, learning progress and certificates.
-- Marketing & Growth owns course promotion and campaigns.
-- Finance & Accounting records actual course revenue, affiliate payouts and related transactions.
-- Reports & Analytics consolidates course performance with other business intelligence.
-
-Learning lifecycle: Create Course → Build Curriculum → Publish → Enroll Student → Learn → Track Progress → Complete → Certificate → Analytics
-Commercial lifecycle: Visitor → Course Page → Checkout → Order/Payment → Student Enrollment → Learning → Certificate
-
 ## 23. Settings
-Settings owns workspace configuration, governance, security, preferences, developer controls and KIOSK subscription billing.
+Settings is the canonical configuration layer for the KIOSK workspace. It consolidates Sync CRM Store Information / Channel / WordPress / Template / Brand, Kiosk CRM 2 Organization / Website / CMS, Kiosk CRM 1 Themes & Settings, and the KIOSK settings architecture already defined.
 
-### Business & Workspace
-- Business Profile
-- Workspace
-- Locations
-- Currency / Locale
+Settings must configure other modules without duplicating their operational systems. For example, WordPress connectivity belongs to Integrations; website creation belongs to Build; communication channels belong to Inbox & Communications; Settings stores defaults, policies and shortcuts.
 
-### Appearance & Branding
-- Appearance
-- Branding
-- Themes
-- Layout
+### Settings Overview
+- Workspace Status
+- Business Profile Completion
+- Connected Services Summary
+- Branding Status
+- Website / Domain Status
+- Security Status
+- Billing Status
+- Recent Configuration Changes
+
+### Organization & Business
+Canonical home for Sync Store Information and Kiosk CRM 2 Organization.
+- Organization Profile
+- Business / Store Information
+- Legal Business Name
+- Display Name
+- Business Type
+- Contact Information
+- Business Address
+- Logo / Business Assets
+- Locations / Branches
+- Default Location
+- Currency
+- Locale / Language
+- Time Zone
+- Date / Time Format
+- Tax Identity / Registration Fields
+
+Location configuration lives here. Operational branch activity remains Operations, staff assignment remains Team, and warehouse stock remains Catalog.
+
+### Brand & Appearance
+Consolidates Sync Brand, Kiosk CRM 1 Themes, and the Appearance system already implemented in KIOSK.
+
+#### Brand
+- Brand Name
+- Logo
+- Icon / Favicon
+- Brand Colors
+- Brand Assets
+- Email Branding
+- Document Branding
+- Storefront Branding Defaults
+- Social / Sharing Assets
+
+#### Appearance — already implemented with local persistence
+- Color Themes
+- Theme Style
+- Typography
+- Text Scale
+- Density
+- App Layout
+- Surface Pattern
+- Light / Dark Mode
+- Accent Color
+
+Brand and Appearance are related but distinct: Brand defines the business identity presented to customers; Appearance controls how the KIOSK application workspace looks to its users.
+
+### Website & CMS
+Consolidates Kiosk CRM 2 Website / CMS and relevant Sync settings without duplicating Build.
+- Website Settings
+- Primary Website
+- Storefront URL
+- Domain Defaults
+- SEO Defaults
+- Site Metadata
+- Social Sharing Defaults
+- CMS Preferences
+- Content Defaults
+- Navigation Defaults
+- Homepage Assignment
+- Maintenance / Visibility Settings
+
+Boundary: Build owns Website Builder, Pages, Navigation, Storefront Builder, Templates and visual page editing. Settings → Website & CMS owns defaults, publishing configuration and workspace-level website preferences.
+
+### Channels
+Consolidates Sync CRM Channel settings while avoiding duplication with Inbox & Communications and Integrations.
+- Default Communication Channel
+- Channel Preferences
+- Business Contact Channels
+- Sender Identity Defaults
+- Customer Reply Routing
+- Channel Availability by Team / Location
+- Quiet Hours / Sending Windows
+- Channel Policy Defaults
+- Open Channel Setup
+
+Connection setup and provider authorization live in Integrations / Inbox Channel Setup. Settings controls workspace defaults and routing policy.
+
+### WordPress & External Store Settings
+WordPress must not become a second integration manager inside Settings.
+- WordPress Shortcut
+- WooCommerce Shortcut
+- Connected Store Summary
+- Default Sync Preferences
+- Store Mapping Defaults
+- Open Integration Settings
+
+Canonical connection ownership: Integrations → Commerce Connectors → WordPress / WooCommerce.
+
+### Templates & Defaults
+Consolidates Sync Template and Kiosk CRM 1 template/settings concepts at the workspace-default level.
+- Template Defaults
+- Document Templates
+- Invoice / Receipt Defaults
+- Email Template Defaults
+- Message Template Defaults
+- Sales / Order Form Defaults
+- Course / Certificate Defaults
+- Workflow Template Defaults
+- Naming / Numbering Sequences
+- Business Default Content
+
+Module-specific template libraries remain in their canonical modules. Settings stores defaults and organization-wide template policy rather than duplicating every template editor.
 
 ### Notification Preferences
-Controls delivery preferences; Notifications owns the actual notification center.
+- In-app
+- Email
+- SMS
+- WhatsApp / Configured Channels
+- Priority Preferences
+- Delivery Preferences
+- Quiet Hours
+- Digest Preferences
+
+The standalone Notifications module owns actual alerts, reminders and notification rules.
 
 ### Integrations Shortcut
-Links to the standalone Integrations module without duplicating it.
+Links to the standalone Integrations module without duplicating connection management.
+- Connected Apps Summary
+- Connection Health Summary
+- Open Integrations
+- Open Marketplace
 
 ### Developer
 - Developer Overview
@@ -421,19 +518,23 @@ Links to the standalone Integrations module without duplicating it.
 - Login Policies
 - Sessions / Devices
 - Authentication Controls
+- Password / Access Policies
 
 ### Preferences
 - Personal Preferences
 - Language
 - Date / Time
 - Display Preferences
+- Default Landing Page
+- Personal Work Defaults
 
 ### System Configuration
-- Templates
 - Commerce Settings
 - Tax / Currency Rules
 - Numbering / Document Sequences
 - Business Defaults
+- Data / Import Defaults
+- Feature Configuration
 
 ### Plans & Billing
 - Current Plan
@@ -445,14 +546,34 @@ Links to the standalone Integrations module without duplicating it.
 - Upgrade / Downgrade
 - Cancel Subscription
 
+Plans & Billing is what the KIOSK customer pays KIOSK for the software and stays separate from the customer's business Finance & Accounting records.
+
+### Settings source consolidation
+- Sync CRM Store Information → Settings → Organization & Business
+- Sync CRM Channel → Settings → Channels, with connection management in Inbox / Integrations
+- Sync CRM WordPress → Integrations → Commerce Connectors, with Settings shortcut/defaults
+- Sync CRM Template → Settings → Templates & Defaults, while module template editors remain canonical in their modules
+- Sync CRM Brand → Settings → Brand & Appearance → Brand
+- Kiosk CRM 2 Organization → Settings → Organization & Business
+- Kiosk CRM 2 Website → Settings → Website & CMS, with Build owning site creation/editing
+- Kiosk CRM 2 CMS → Settings → Website & CMS, with Build/content modules owning actual content editing
+- Kiosk CRM 1 Themes → Settings → Brand & Appearance → Appearance
+- Kiosk CRM 1 Settings → consolidated into the structured Settings module above
+
 ## Canonical ownership rules
-- Learning & Academy = courses, curriculum, enrollment, progress, certificates and learner experience.
-- CRM = canonical person/contact identity; student is a linked learning role/profile.
-- Commerce = course checkout/order/payment processing.
-- Build = course/academy public page building.
-- Reports & Analytics = cross-business BI, including consolidated learning analytics.
+- Settings = workspace configuration, defaults, governance and preferences.
+- Settings → Organization & Business = business/store/organization identity and workspace defaults.
+- Settings → Brand & Appearance = brand identity plus KIOSK workspace appearance.
+- Settings → Website & CMS = website/CMS defaults and publishing configuration; Build owns creation/editing.
+- Settings → Channels = communication defaults/routing policy; Inbox and Integrations own channel operation/connectivity.
+- WordPress/WooCommerce connectivity = Integrations, not a second Settings integration system.
+- Settings → Templates & Defaults = organization-wide defaults; module-specific template editors remain with their modules.
+- Learning & Academy = courses, curriculum, enrollment, progress and certificates.
+- CRM = canonical person/contact identity.
+- Commerce = checkout/order/payment processing.
+- Build = customer-facing page/site/form builders.
+- Reports & Analytics = cross-business BI.
 - Integrations = external service/app/platform connections.
-- Integrations → Marketplace = discover/install plugins/extensions/templates/AI skills.
 - Settings → Developer = API keys/API Explorer/technical tooling.
 - Settings → Audit & Compliance = permanent organization-wide audit trail.
 - AI Studio = reusable AI capabilities.
@@ -470,9 +591,11 @@ Links to the standalone Integrations module without duplicating it.
 A capability has one canonical home but may have contextual entry points elsewhere.
 
 ## Operating model
+Settings: Organization → Brand → Website/CMS Defaults → Channels → Templates → Security → Preferences
+Website: Settings Defaults → Build Website/Storefront → Publish → Commerce/CRM
+Channel: Settings Policy → Integration Connection → Inbox Conversation / Marketing Broadcast
+WordPress: Settings Shortcut → Integrations → WordPress/WooCommerce Connection → Sync → Catalog/Commerce
 Learning: CRM Contact → Enrollment → Course → Progress → Completion → Certificate
-Course sale: Build Course Page → Commerce Checkout → Payment → Enrollment → Learning → Finance → Reports
-Affiliate course sale: Affiliate Referral → Course Checkout → Payment → Commission → Finance/Payout → Analytics
 Integration: Discover App → Install → Authorize → Configure → Connect → Sync → Monitor
 Strategy-to-results: Venture → Planning & Strategy → Operations / Build / Funnels / Marketing → CRM → Commerce → Finance → Reports
 
@@ -480,6 +603,8 @@ Strategy-to-results: Venture → Planning & Strategy → Operations / Build / Fu
 - Gift Cards — optional regional Commerce/Marketing feature; not primary for current target market.
 
 ## Deferred enhancement backlog
+- Build the remaining Settings panels as real React workspaces; Appearance is currently the only implemented Settings panel
+- Replace temporary DOM navigation bridges with direct React navigation/router
 - Generalize affiliate engine if Commerce/Marketing needs platform-wide affiliate selling
 - Real LMS media delivery, assessment grading and certificate verification backend
 - Real marketplace/plugin permission model and extension sandboxing
@@ -488,5 +613,4 @@ Strategy-to-results: Venture → Planning & Strategy → Operations / Build / Fu
 - Commerce Command Center refinement
 - Reviews & Reputation refinement
 - Backend persistence/auth/data integrations
-- Replace temporary DOM navigation bridges with direct React navigation/router
 - Pin dependency versions and repository hygiene
