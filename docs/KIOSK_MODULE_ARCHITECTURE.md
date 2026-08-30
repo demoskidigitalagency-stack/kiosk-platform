@@ -21,7 +21,8 @@ KIOSK is an e-commerce operating system for sellers. This document is the workin
 - HR — Structured
 - Operations — Structured
 - Finance & Accounting — Structured
-- Reports & Analytics — Framework
+- Reports & Analytics — Structured
+- Notifications — Structured
 - Automation — Structured
 - AI Studio — Structured
 - Integrations — Framework
@@ -33,7 +34,6 @@ KIOSK is an e-commerce operating system for sellers. This document is the workin
 - Activity
 
 ## 2. Commerce
-Commerce owns selling transactions and post-sale flow.
 - Commerce Overview
 - Sell: Point of Sale, Orders, Quotes & Contracts
 - Revenue: Invoices, Payments, Returns & Refunds
@@ -42,26 +42,24 @@ Commerce owns selling transactions and post-sale flow.
 - Store: Storefront
 
 ## 3. CRM & Customers
-CRM owns contact identity, prospects, customers, companies, opportunities, attribution and relationship activity.
 - CRM Overview
 - Contacts: All Contacts, Contact Center, New Contact, Segments, Smart Lists, Tags, Imports, Duplicate Manager
 - Contact Capture & Enrichment: Sources, Captured Contacts, Attribution, Capture Rules, Capture History, Review Queue
 - Customers: Customer List, Customer Center, New Customer
 - Leads: Lead List, New Lead, Lead Sources, Lead Qualification
-- Companies: Company List, New Company, Company Profile
-- Deals & Pipeline: Deals, Pipeline Board, Deal Stages
-- Activities & Follow-ups: Tasks, Follow-ups, Calls, Notes, Reminders
-- Meetings: Meetings, Schedule Meeting, Meeting History
-- CRM Intelligence: Forecast, Pipeline Forecast, Lead & Deal Insights, Source & Campaign Attribution, Conversion Insights
-- Data & Customization: Custom Fields, Custom Objects, Merge Records, Data Cleanup Rules, Import Mapping
+- Companies
+- Deals & Pipeline
+- Activities & Follow-ups
+- Meetings
+- CRM Intelligence
+- Data & Customization
 
 ## 4. Catalog
-Catalog is the canonical sellable-product and stock system.
 - Catalog Overview
-- Products: All Products, New Product, Physical, Digital, Services, Bundles, Variants & Options, Collections & Categories, Price Books
-- Inventory: Overview, Stock Levels, Adjustments, Transfers, Physical Inventory, Low-Stock Alerts, Reorder Signals, History, Warehouses
-- Product Data & Imports: Bulk/CSV Import, Export, Dropship Import, Mapping, History, Barcode Tools, Cleanup, Backup/Export
-- Sales Channels: Online Store, POS, Website, Sales/Order Forms, Connected Stores
+- Products
+- Inventory
+- Product Data & Imports
+- Sales Channels
 
 ## 5. Purchasing
 - Purchasing Overview
@@ -72,118 +70,27 @@ Catalog is the canonical sellable-product and stock system.
 - Procurement
 - Purchasing History
 
-Supply flow: Low Stock → Reorder Suggestion → Purchase Request → Purchase Order → Supplier → Receive → Inventory
-
 ## 6. Venture
-Venture owns business/product discovery, offer creation and launch preparation.
 - Venture Overview
 - Venture Forge
-- Discover: Niche Finder, Market Research, Competitor Research, Opportunity Finder
-- Offer: Offer Builder, Customer Persona, Value Proposition, Pricing Strategy, Offer Stack
-- Products: Product Ideas, Digital Product Generator, Digital Product Library
+- Discover
+- Offer
+- Products
 - Funnel Generator
 - Launch Center
 - Ads & Social Content
 - Export Center
 
-Venture can hand selected opportunities to Planning & Strategy for formal business planning and modelling.
-
 ## 7. Planning & Strategy
-Planning & Strategy owns forward-looking business planning, strategic analysis, financial modelling and execution roadmaps. Finance & Accounting remains the source of actual financial performance.
-
-### Strategy Overview
-- Active Plans
-- Strategic Goals
-- KPIs
-- Milestones
-- Risks
-- Progress
-- Upcoming Strategic Activities
-
-### Business Planning
-- Business Plan
-- Executive Summary
-- Company Overview
-- Products & Services
-- Target Market
-- Business Objectives
-- Financial Plan
-- Business Plan Templates
-
-### Market & Competitive Analysis
-- Market Analysis
-- Competitor Analysis
-- SWOT Analysis
-- Gap Analysis
-- Market Opportunity
-- Customer Analysis
-
-Venture may generate research or an opportunity; Planning & Strategy formalizes the selected direction without duplicating Venture discovery tools.
-
-### Business Model
-- Business Model Canvas
-- Value Proposition
-- Customer Segments
-- Revenue Streams
-- Cost Structure
-- Channels
-- Key Activities
-- Key Resources
-- Key Partners
-
-### Financial Models
-- Financial Model Overview
-- 5-Year Projection
-- Revenue Forecast
-- Expense Forecast
-- Cash Flow Projection
-- Profit Projection
-- Break-even Analysis
-- Discounted Cash Flow (DCF)
-- Scenario Planning
-- Burn Rate & Runway
-
-### Business-Specific Models
-- E-commerce Model
-- SaaS Model
-- Subscription Model
-- Retail Model
-- Service Business Model
-- Custom Model
-
-### KPI Dashboard
-KPIs adapt to the business model rather than forcing irrelevant metrics on every seller.
-- Revenue Growth
-- Gross Margin
-- Net Margin
-- Customer Acquisition Cost (CAC)
-- Lifetime Value (LTV)
-- Average Order Value (AOV)
-- Conversion Rate
-- Churn
-- Monthly / Annual Recurring Revenue (MRR / ARR)
-- Burn Rate
-- Runway
-
-### Execution Planning
-- Strategic Roadmap
-- Delivery Roadmap
-- Goals / Objectives
-- Initiatives
-- Milestones
-- Dependencies
-- Risks
-- Project Charter
-
-Project Charter defines why and what should be executed; an approved charter can create/link to Operations → Projects for execution.
-
-### Planning boundaries
-- Actual transactions, balances and accounting records belong to Finance & Accounting.
-- Venture discovers/generates opportunities; Planning formalizes selected opportunities.
-- Projects and tasks are executed in Operations.
-- Content Calendar belongs to Marketing & Growth, not general strategy planning.
-
-Planning lifecycle: Opportunity → Business Plan → Market Analysis → Business Model → Financial Model → Roadmap → Project Charter → Operations Project → Actual Results
+Planning owns future-facing strategy and models; Finance owns actual financial records.
+- Strategy Overview
+- Business Planning
+- Market & Competitive Analysis
+- Business Model
+- Financial Models: 5-Year Projection, Forecasts, DCF, Break-even, Scenario Planning, Burn Rate & Runway
+- Business-Specific Models: E-commerce, SaaS, Subscription, Retail, Service, Custom
+- KPI Dashboard
+- Execution Planning: Strategic/Delivery Roadmap, Initiatives, Milestones, Dependencies, Risks, Project Charter
 
 ## 8. Build
 - Website Builder
@@ -216,20 +123,17 @@ Planning lifecycle: Opportunity → Business Plan → Market Analysis → Busine
 - Funnel Settings
 
 ## 10. Marketing & Growth
-Marketing owns acquisition, campaigns, broadcasts, promotions, retention, advertising and content execution.
 - Marketing Overview
 - Campaigns
-- Broadcasts: Email, SMS, WhatsApp, Telegram, Multi-channel
+- Broadcasts
 - Audience & Targeting
 - Templates & Content
-- Content: Content Calendar, Social Content, Email Content, Campaign Content, Scheduled Content, Content Library, Content Performance
+- Content: Content Calendar, Social, Email, Campaign, Scheduled Content, Library, Performance
 - Promotions: Discounts, Coupons, Promotion Rules
 - Loyalty & Rewards
-- Recovery: Abandoned Carts, Recovery Campaigns, Win-back Campaigns
-- Experimentation: A/B Tests, Campaign Tests, Creative Tests
-- Advertising: Ad Campaigns, Ad Creative, Ad Research / Competitor Research, Meta Ads, Google Ads, Campaign Performance
-
-Gift Cards remain optional/regional rather than a primary feature.
+- Recovery
+- Experimentation
+- Advertising
 
 ## 11. Inbox & Communications
 - Inbox Overview
@@ -237,7 +141,7 @@ Gift Cards remain optional/regional rather than a primary feature.
 - My Conversations
 - Unassigned
 - Pinned
-- Channels: WhatsApp, Email, SMS, Facebook Messenger, Instagram DM, Telegram, Web Chat
+- Channels: WhatsApp, Email, SMS, Messenger, Instagram DM, Telegram, Web Chat
 - Channel Setup
 - Conversation Management
 - Message Templates
@@ -259,7 +163,7 @@ Gift Cards remain optional/regional rather than a primary feature.
 - Roles & Permissions
 - Locations & Assignment
 - Performance
-- Team Communication: Team Chat, Announcements, Internal Updates
+- Team Communication
 
 ## 14. HR
 - HR Overview
@@ -274,7 +178,6 @@ Gift Cards remain optional/regional rather than a primary feature.
 - Offboarding
 
 ## 15. Operations
-Operations owns cross-business human work execution.
 - Operations Overview
 - Projects
 - Tasks
@@ -286,106 +189,156 @@ Operations owns cross-business human work execution.
 - Locations / Branch Operations
 
 ## 16. Finance & Accounting
-Finance & Accounting owns actual business money, accounting records, cash movement and financial reporting. It records what actually happened; Planning & Strategy models what is expected to happen.
-
-### Finance Overview
-- Revenue
+Finance records what actually happened financially.
+- Finance Overview
+- Sales Finance: Revenue, Invoices, Receipts, Payments, Refunds, Credit Notes, Payment History
 - Expenses
-- Profit / Net Income
-- Cash Position
-- Outstanding Invoices
-- Payments Received
-- Receivables / Payables
-- Recent Transactions
-
-### Sales Finance
-- Revenue
-- Invoices
-- Receipts
-- Payments
-- Refunds
-- Credit Notes
-- Payment History
-
-Commerce may create or surface invoices/payments operationally, but Finance & Accounting is the canonical financial record and reporting layer.
-
-### Expenses
-- All Expenses
-- New Expense
-- Expense Categories
-- Recurring Expenses
-- Expense Attachments / Receipts
-- Expense History
-
-### Accounts & Wallets
-Designed for flexible payment environments including African markets.
-- Cash Accounts
-- Bank Accounts
-- Mobile Money
-- Wallets
-- Account Balances
-- Transfers
-- Transaction History
-
-### Accounting
-- Chart of Accounts
-- General Ledger
-- Journal Entries
-- Accounts Receivable
-- Accounts Payable
-- Reconciliation
-- Opening Balances
-- Accounting Periods
-
-### Cash Management
-- Cash In
-- Cash Out
-- Cash Drawer
-- Payouts
-- Daily Close
-- Opening / Closing Balance
-- Cash Variance
-
-### Taxes
-- Tax Rates
-- Tax Rules
-- Tax Summary
-- Tax Reports
-
-### Financial Reports
-- Profit & Loss
-- Balance Sheet
-- Cash Flow
-- Revenue Report
-- Expense Report
-- Payment Report
-- Receivables
-- Payables
-- Daily Sales / Close Report
-
-Finance flow: Order → Invoice → Payment → Receipt → Account / Wallet → Reconciliation → Accounting → Financial Report
-Expense flow: Expense → Payment → Account / Wallet → Accounting Entry → Financial Report
+- Accounts & Wallets: Cash, Bank, Mobile Money, Wallets, Balances, Transfers, History
+- Accounting: Chart of Accounts, Ledger, Journal Entries, AR/AP, Reconciliation, Opening Balances, Periods
+- Cash Management: Cash In/Out, Cash Drawer, Payouts, Daily Close, Opening/Closing Balance, Variance
+- Taxes
+- Financial Reports
 
 ## 17. Reports & Analytics
-- Sales
-- Orders
-- Products
-- Inventory
-- Customers
-- Marketing
-- Funnels
-- Communications
-- Team / Staff
-- HR
-- Finance
-- Planning vs Actual
-- Fulfillment
-- Customer Service
-- Projects / Tasks
-- Automation
-- Custom Reports
+Reports & Analytics is the canonical cross-business intelligence layer. Sync CRM Insights and Kiosk CRM Reports/Analytics consolidate here.
 
-## 18. Automation
+### Reports Overview
+- Executive Summary
+- Key KPIs
+- Performance Snapshot
+- Trends
+- Recent Reports
+- Saved Reports
+- Scheduled Reports
+
+### Analytics
+- Sales Analytics
+- Commerce Analytics
+- Customer Analytics
+- CRM Analytics
+- Funnel Analytics
+- Marketing Analytics
+- Campaign Analytics
+- Product Analytics
+- Inventory Analytics
+- Purchasing Analytics
+- Finance Analytics
+- Customer Service Analytics
+- Team / Staff Analytics
+- HR Analytics
+- Operations / Project Analytics
+- Communication Analytics
+- Automation Analytics
+
+### Reports
+- Sales Reports
+- Order Reports
+- Product Reports
+- Inventory Reports
+- Customer Reports
+- CRM / Pipeline Reports
+- Marketing Reports
+- Funnel Reports
+- Finance Reports
+- Expense Reports
+- Purchasing Reports
+- Fulfillment Reports
+- Customer Service Reports
+- Team Reports
+- HR Reports
+- Project / Task Reports
+- Automation Reports
+
+### Financial & Strategic Intelligence
+- Planning vs Actual
+- Budget vs Actual
+- Forecast vs Actual
+- Revenue Trends
+- Profitability
+- Cash Flow Trends
+- KPI Performance
+- Business Health
+
+### Custom Reporting
+- Report Builder
+- Custom Reports
+- Saved Reports
+- Report Templates
+- Filters
+- Date Ranges
+- Grouping
+- Comparisons
+- Export
+
+### Dashboards
+- Executive Dashboard
+- Sales Dashboard
+- Marketing Dashboard
+- Finance Dashboard
+- Operations Dashboard
+- Custom Dashboards
+
+Individual modules may show contextual analytics, but cross-business reporting and BI remain canonical here.
+
+## 18. Notifications
+Notifications is the canonical internal alert and reminder center for KIOSK users.
+
+### Notification Center
+- All Notifications
+- Unread
+- Read
+- Mentions
+- Assigned to Me
+- Important
+- Archived
+
+### Business Alerts
+- New Orders
+- Payment Alerts
+- Failed Payments
+- Refunds
+- Low Stock / Out of Stock
+- Purchase / Receiving Alerts
+- New Leads
+- Deal Updates
+- Customer Service Escalations
+- Overdue Tasks
+- Approval Requests
+- Signature Requests
+
+### System Alerts
+- Integration Issues
+- Automation Failures
+- Security Alerts
+- Login Alerts
+- API / Webhook Issues
+- Import / Export Issues
+- System Updates
+
+### Reminders
+- Follow-up Reminders
+- Task Reminders
+- Meeting Reminders
+- Invoice Reminders
+- Payment Reminders
+- Subscription / Renewal Reminders
+- Custom Reminders
+
+### Notification Rules
+- Event
+- Condition
+- Recipient
+- Channel
+- Timing
+- Priority
+
+Example: Inventory < threshold → Notify Inventory Manager → In-app + Email.
+Example: High-value order → Notify Owner → In-app + configured channel.
+Example: Invoice overdue → Notify Finance + optionally create Operations task through Automation.
+
+Notifications are internal alerts. Inbox owns conversations with people; Marketing owns campaigns/broadcasts; Automation owns event-driven orchestration. Settings retains each user's Notification Preferences and delivery preferences.
+
+## 19. Automation
 - Automation Overview
 - Workflows
 - Workflow Builder
@@ -399,7 +352,7 @@ Expense flow: Expense → Payment → Account / Wallet → Accounting Entry → 
 - Errors / Failed Runs
 - Automation Analytics
 
-## 19. AI Studio
+## 20. AI Studio
 - AI Overview
 - AI Assistant
 - Content Generator
@@ -410,7 +363,7 @@ Expense flow: Expense → Payment → Account / Wallet → Accounting Entry → 
 - AI Settings
 - AI History / Generations
 
-## 20. Integrations
+## 21. Integrations
 - Connected Apps
 - WooCommerce
 - WordPress
@@ -421,46 +374,46 @@ Expense flow: Expense → Payment → Account / Wallet → Accounting Entry → 
 - Webhooks
 - Import / Export Connections
 
-## 21. Settings
-Settings owns workspace configuration, governance, preferences, security and KIOSK account billing.
-- Business & Workspace: Business Profile, Workspace, Location Configuration, Currency, Locale, Date/Time Defaults
-- Appearance & Branding: Appearance, Theme, Color Mode, Accent, Typography, Density, Layout, Surface Pattern, Custom Branding, Logo/Assets
-- Notifications
-- Security: 2FA, Login Policies, Sessions/Devices, Authentication Controls
-- Developer: API Keys, Webhook Configuration, Developer Settings, API Access Policies
+## 22. Settings
+Settings owns configuration, governance, security, preferences and KIOSK subscription billing.
+- Business & Workspace
+- Appearance & Branding
+- Notification Preferences: In-app, Email, SMS, WhatsApp/other configured channels, priority and delivery preferences
+- Security
+- Developer
 - Audit & Compliance
 - Preferences
 - System Configuration
-- Plans & Billing: Current Plan, Subscription, Usage, Billing History, KIOSK Invoices, Payment Method, Upgrade/Downgrade, Cancel Subscription
+- Plans & Billing
 
-Plans & Billing represents what the KIOSK customer pays KIOSK for the software. It must remain separate from the customer's own Finance & Accounting records.
-
-Appearance is already implemented in the frontend with local persistence and remains the canonical visual-system configuration area.
+Notification Preferences controls how a user receives alerts; the Notifications module contains the actual alerts, reminders and notification rules.
 
 ## Canonical ownership rules
-- Planning & Strategy = future plans, projections, business models and strategic roadmaps.
-- Finance & Accounting = actual money, balances, accounting and financial reporting.
-- Venture = opportunity and offer discovery/generation.
-- Operations = execution through projects/tasks/approvals/documents.
-- Marketing = campaigns, broadcasts, content calendar, promotions and advertising.
-- Inbox = conversations/channels.
-- Funnels = conversion journeys.
+- Reports & Analytics = cross-business intelligence, reports, dashboards and plan-vs-actual analysis.
+- Notifications = internal alerts/reminders for KIOSK users.
+- Settings → Notification Preferences = user delivery preferences, not the notification center.
+- Inbox = conversations with people.
+- Marketing = campaigns/broadcasts/content/promotions/advertising.
 - Automation = triggers/actions/orchestration.
-- AI Studio = reusable AI capabilities.
-- CRM = contact/customer identity and relationship history.
+- Planning & Strategy = future plans/projections/roadmaps.
+- Finance & Accounting = actual money/accounting/reporting source data.
+- Venture = opportunity/offer discovery.
+- Operations = human execution.
+- CRM = identity/relationship history.
 - Commerce = selling transaction.
-- Catalog = products and stock truth.
-- Purchasing = procurement and receiving.
-- Settings = configuration, governance, security and KIOSK subscription billing.
+- Catalog = products/stock truth.
+- Purchasing = procurement/receiving.
+- AI Studio = reusable AI capabilities.
 
-A capability has one canonical home but may have contextual entry points elsewhere. Do not create duplicate systems merely because a capability participates in several workflows.
+A capability has one canonical home but may have contextual entry points elsewhere.
 
 ## Operating model
+Insight: Operational Data → Module Analytics → Reports & Analytics → Dashboard / Report → Decision
+Notification: Business/System Event → Rule/Automation → Notification → Notification Center → User
+Preference: User → Settings → Notification Preferences → Delivery Channels
 Strategy-to-results: Venture → Planning & Strategy → Operations / Build / Funnels / Marketing → CRM → Commerce → Finance → Reports
 Planning-to-execution: Business Plan → Financial Model → Roadmap → Project Charter → Operations Project → Actual Results → Plan vs Actual
 Finance: Transaction → Invoice/Expense → Payment → Account/Wallet → Accounting → Reconciliation → Financial Report
-Customer/revenue: Acquire → CRM → Sell → Pay → Fulfill → Account → Retain
-Product/revenue: Venture/Create → Catalog → Publish → Commerce → Order → Payment → Fulfillment → Revenue
 
 ## Pending / regional placement
 - Gift Cards — optional regional Commerce/Marketing feature; not primary for current target market.
