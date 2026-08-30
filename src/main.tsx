@@ -9,11 +9,13 @@ import './commerce-shell.css';
 import './crm-shell.css';
 import './catalog-shell.css';
 import './customer-service-shell.css';
+import './people-admin-shell.css';
 import './dashboard-mount';
 import './commerce-shell';
 import './crm-shell';
 import './catalog-shell';
 import './customer-service-shell';
+import './people-admin-shell';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
