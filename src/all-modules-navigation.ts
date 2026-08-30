@@ -1,175 +1,260 @@
-type ModuleEntry = {
+type MenuNode = {
   label: string;
-  parent: string;
-  description: string;
+  children?: MenuNode[];
 };
 
-type ModuleGroup = {
-  label: string;
-  items: ModuleEntry[];
+const hierarchy: Record<string, MenuNode[]> = {
+  Dashboard: [
+    { label: 'Dashboard' },
+    { label: 'Today' },
+    { label: 'Activity' },
+  ],
+  Inbox: [
+    { label: 'Inbox', children: [{ label: 'All Conversations' }, { label: 'My Conversations' }, { label: 'Unassigned' }, { label: 'Pinned' }] },
+    { label: 'WhatsApp', children: [{ label: 'Conversations' }, { label: 'Connected Numbers' }, { label: 'Templates' }, { label: 'Operational Controls' }] },
+    { label: 'Email', children: [{ label: 'Inbox' }, { label: 'Sent' }, { label: 'Templates' }] },
+    { label: 'SMS', children: [{ label: 'Conversations' }, { label: 'SMS History' }] },
+    { label: 'Social Messaging', children: [{ label: 'Instagram' }, { label: 'Messenger' }, { label: 'Telegram' }] },
+    { label: 'Web Chat', children: [{ label: 'Website Conversations' }] },
+    { label: 'Voice & Calling', children: [
+      { label: 'Dialer' }, { label: 'Calls' }, { label: 'Phone Numbers' },
+      { label: 'Routing', children: [{ label: 'IVR' }, { label: 'Queues' }, { label: 'Routing Rules' }] },
+      { label: 'Records', children: [{ label: 'Recordings' }, { label: 'Voicemail' }, { label: 'Notes' }, { label: 'Dispositions' }] },
+      { label: 'Intelligence', children: [{ label: 'Voice Analytics' }, { label: 'Agent Performance' }] },
+    ] },
+  ],
+  Notifications: [
+    { label: 'Notification Center' }, { label: 'Business Alerts' }, { label: 'System Alerts' }, { label: 'Reminders' }, { label: 'Notification Rules' },
+  ],
+  'CRM & Customers': [
+    { label: 'Overview' },
+    { label: 'Contacts', children: [{ label: 'All Contacts' }, { label: 'Contact Profile' }, { label: 'Import / Export' }, { label: 'Duplicates' }] },
+    { label: 'Customers', children: [{ label: 'Customer List' }, { label: 'Customer Center' }, { label: 'Rewards' }] },
+    { label: 'Leads', children: [{ label: 'All Leads' }, { label: 'New Leads' }, { label: 'Lead Pipeline' }, { label: 'Lead Assignment' }] },
+    { label: 'Companies', children: [{ label: 'Company List' }, { label: 'Company Profiles' }] },
+    { label: 'Deals & Pipeline', children: [{ label: 'Deals' }, { label: 'Pipelines' }, { label: 'Stages' }, { label: 'Forecast' }] },
+    { label: 'Activities', children: [{ label: 'Tasks' }, { label: 'Follow-ups' }, { label: 'Calls' }, { label: 'Notes' }] },
+    { label: 'Meetings' },
+    { label: 'Capture & Enrichment', children: [{ label: 'Forms' }, { label: 'Lead Capture' }, { label: 'Enrichment' }, { label: 'Verification' }] },
+    { label: 'Product & Service Interest', children: [{ label: 'Interests' }, { label: 'Interest History' }] },
+    { label: 'Segmentation', children: [{ label: 'Segments' }, { label: 'Smart Lists' }] },
+    { label: 'Intelligence', children: [{ label: 'CRM Analytics' }, { label: 'Lead Intelligence' }] },
+    { label: 'Data & Customization', children: [{ label: 'Custom Fields' }, { label: 'Tags' }, { label: 'Import / Export' }, { label: 'Duplicate Rules' }] },
+  ],
+  Commerce: [
+    { label: 'Overview' },
+    { label: 'Sell', children: [{ label: 'Point of Sale' }, { label: 'Orders' }, { label: 'Quotes' }, { label: 'Contracts' }] },
+    { label: 'Revenue', children: [{ label: 'Invoices' }, { label: 'Payments' }] },
+    { label: 'Returns', children: [{ label: 'Returns' }, { label: 'Refunds' }] },
+    { label: 'Conversion', children: [{ label: 'Carts' }, { label: 'Checkout' }, { label: 'Abandoned Carts' }, { label: 'Discounts' }] },
+    { label: 'Fulfillment', children: [{ label: 'Order Assignment' }, { label: 'Shipping' }, { label: 'Delivery' }] },
+    { label: 'My Store Command Center' },
+    { label: 'Storefront' },
+    { label: 'Reviews & Reputation', children: [{ label: 'Product Reviews' }, { label: 'Store Reviews' }, { label: 'Moderation' }, { label: 'Review Requests' }] },
+  ],
+  Catalog: [
+    { label: 'Overview' },
+    { label: 'Products', children: [{ label: 'Product List' }, { label: 'New Product' }, { label: 'Product Details' }] },
+    { label: 'Organization', children: [{ label: 'Collections' }, { label: 'Categories' }, { label: 'Departments' }] },
+    { label: 'Variants', children: [{ label: 'Variants' }, { label: 'Options' }] },
+    { label: 'Pricing', children: [{ label: 'Price Books' }, { label: 'Price Manager' }] },
+    { label: 'Inventory', children: [{ label: 'Stock List' }, { label: 'Adjustments' }, { label: 'Physical Inventory' }, { label: 'Reminders' }] },
+    { label: 'Warehouses', children: [{ label: 'Warehouses' }, { label: 'Stock Locations' }, { label: 'Transfers' }] },
+    { label: 'Imports', children: [{ label: 'Bulk Import' }, { label: 'Dropship Import' }] },
+    { label: 'Tools', children: [{ label: 'Barcode' }, { label: 'Product Data Tools' }] },
+    { label: 'Sales Channels' },
+  ],
+  Purchasing: [
+    { label: 'Overview' }, { label: 'Suppliers' }, { label: 'Purchase Orders' }, { label: 'Receiving' }, { label: 'Supplier Returns' }, { label: 'Procurement' }, { label: 'Purchasing History' },
+  ],
+  'Customer Service': [
+    { label: 'Overview' }, { label: 'Tickets & Helpdesk' }, { label: 'Complaints' }, { label: 'Knowledge Base' }, { label: 'Customer Portal' }, { label: 'Service Workspace' }, { label: 'Service Reports' },
+  ],
+  'Marketing & Growth': [
+    { label: 'Overview' }, { label: 'Campaigns' }, { label: 'Broadcasts', children: [{ label: 'WhatsApp Broadcasts' }, { label: 'SMS Broadcasts' }, { label: 'Email Broadcasts' }] },
+    { label: 'Audience & Targeting', children: [{ label: 'Audiences' }, { label: 'Segments' }, { label: 'Smart Lists' }] },
+    { label: 'Templates & Content', children: [{ label: 'WhatsApp Templates' }, { label: 'SMS Templates' }, { label: 'Email Templates' }] },
+    { label: 'Content', children: [{ label: 'Content Calendar' }, { label: 'Creative Library' }] },
+    { label: 'Advertising', children: [{ label: 'Meta Ads' }, { label: 'Google Ads' }, { label: 'Campaign Attribution' }] },
+    { label: 'Promotions' }, { label: 'Loyalty & Rewards' }, { label: 'Recovery' }, { label: 'Experimentation' },
+    { label: 'Affiliate Engine', children: [{ label: 'Affiliates' }, { label: 'Referral Links' }, { label: 'Commissions' }, { label: 'Performance' }] },
+    { label: 'Campaign Delivery', children: [{ label: 'Speed' }, { label: 'Batching' }, { label: 'Scheduling' }, { label: 'Quiet Hours' }, { label: 'Retries' }] },
+    { label: 'Lead Generation', children: [
+      { label: 'Dashboard' }, { label: 'Lead Lists' }, { label: 'Saved Searches' },
+      { label: 'Prospect', children: [{ label: 'Google Maps Prospector' }, { label: 'Website Scraper' }, { label: 'Business Directory Scraper' }] },
+      { label: 'Process', children: [{ label: 'Scrape Jobs' }, { label: 'Enrichment' }, { label: 'Verification' }, { label: 'Deduplication' }] },
+      { label: 'CRM Handoff', children: [{ label: 'Review Leads' }, { label: 'Push to CRM' }, { label: 'Export' }] },
+    ] },
+  ],
+  Funnels: [
+    { label: 'Overview' }, { label: 'All Funnels' }, { label: 'Funnel Builder' }, { label: 'Funnel Templates' }, { label: 'Steps & Pages' }, { label: 'Landing Pages' }, { label: 'Forms' }, { label: 'Split Tests' }, { label: 'Leads & Conversions' }, { label: 'Funnel Analytics' }, { label: 'Funnel Settings' },
+  ],
+  Build: [
+    { label: 'Website', children: [{ label: 'Website Builder' }, { label: 'Pages' }, { label: 'Navigation' }] },
+    { label: 'Storefront', children: [{ label: 'Storefront Builder' }] }, { label: 'Landing Pages' },
+    { label: 'Forms', children: [{ label: 'Form Builder' }, { label: 'Lead Forms' }, { label: 'Sales Forms' }] },
+    { label: 'Commerce Assets', children: [{ label: 'Order Forms' }, { label: 'Sales Pages' }] },
+    { label: 'Pop-ups' }, { label: 'Themes', children: [{ label: 'Themes' }, { label: 'Templates' }] }, { label: 'Domains' }, { label: 'AI Page Builder' },
+  ],
+  Venture: [
+    { label: 'Overview' }, { label: 'Discover', children: [{ label: 'Opportunity Discovery' }, { label: 'Niche Finder' }] }, { label: 'Offer Builder' }, { label: 'Product Library' }, { label: 'Funnel Generator' }, { label: 'Launch Center' }, { label: 'Ads & Social Content' }, { label: 'Export Center' },
+  ],
+  Operations: [
+    { label: 'Overview' },
+    { label: 'Projects', children: [{ label: 'All Projects' }, { label: 'Workspace', children: [{ label: 'Overview' }, { label: 'Kanban' }, { label: 'List' }, { label: 'Timeline' }, { label: 'Milestones' }] }, { label: 'Resources', children: [{ label: 'Files' }, { label: 'Activity' }, { label: 'Analytics' }] }] },
+    { label: 'Tasks' }, { label: 'Calendar' }, { label: 'Meetings' }, { label: 'Approvals' }, { label: 'Workflows & Checklists' }, { label: 'Documents & E-Signature' }, { label: 'Locations / Branch Operations' },
+  ],
+  Team: [
+    { label: 'Overview' }, { label: 'People' }, { label: 'Teams & Departments' }, { label: 'Roles & Permissions' }, { label: 'Locations & Assignment' },
+    { label: 'Sales & Delivery Agents', children: [{ label: 'Agent Directory' }, { label: 'Territory' }, { label: 'Availability' }, { label: 'Assignment' }, { label: 'Performance' }, { label: 'Commission Plan' }] },
+    { label: 'Performance' }, { label: 'Team Communication' },
+  ],
+  HR: [
+    { label: 'Overview' }, { label: 'Employee Directory' }, { label: 'Attendance' }, { label: 'Shifts & Scheduling' }, { label: 'Leave & Time Off' }, { label: 'Payroll & Compensation' }, { label: 'Performance Reviews' }, { label: 'Documents & Policies' }, { label: 'Onboarding' }, { label: 'Offboarding' },
+  ],
+  'Learning & Academy': [
+    { label: 'Overview' }, { label: 'Academy' }, { label: 'Course Catalog' }, { label: 'My Learning' }, { label: 'Courses' }, { label: 'Course Builder' }, { label: 'Students' }, { label: 'Enrollments & Cohorts' }, { label: 'Progress' }, { label: 'Certificates' }, { label: 'Learning Analytics' },
+  ],
+  'Finance & Accounting': [
+    { label: 'Overview' }, { label: 'Revenue' }, { label: 'Expenses' }, { label: 'Customer Payments' }, { label: 'Accounts & Wallets' }, { label: 'Accounting' }, { label: 'Cash Management' }, { label: 'Taxes' },
+    { label: 'Earnings & Commissions', children: [{ label: 'My Earnings' }, { label: 'Staff Earnings' }, { label: 'Agent Commissions' }, { label: 'Affiliate Earnings' }, { label: 'Commission Rules' }, { label: 'Adjustments' }, { label: 'Pending / Approved / Paid' }, { label: 'Payout History' }] },
+    { label: 'Financial Reports' },
+  ],
+  'Reports & Analytics': [
+    { label: 'Overview' }, { label: 'Analytics' }, { label: 'Reports' }, { label: 'Custom Reports & Dashboards' }, { label: 'Sales & Revenue' }, { label: 'Attribution' }, { label: 'Marketing' }, { label: 'Funnel' }, { label: 'Team & Agent Performance' }, { label: 'Operations' }, { label: 'Communications', children: [{ label: 'WhatsApp Analytics' }, { label: 'Email Analytics' }, { label: 'SMS Analytics' }, { label: 'Voice Analytics' }] }, { label: 'Financial & Strategic Intelligence' },
+  ],
+  'Planning & Strategy': [
+    { label: 'Strategy' }, { label: 'Business Plan' }, { label: 'Market & Competitive Analysis' }, { label: 'Business Model' }, { label: 'Financial Models', children: [{ label: 'DCF' }, { label: 'Five-Year Projection' }, { label: 'Break-even' }] }, { label: 'Specialized Models', children: [{ label: 'SaaS Model' }, { label: 'E-commerce Model' }] }, { label: 'Scenario Planning', children: [{ label: 'Scenarios' }, { label: 'Burn Rate' }, { label: 'Runway' }] }, { label: 'KPI Dashboard' }, { label: 'Execution', children: [{ label: 'Roadmaps' }, { label: 'Project Charter' }] },
+  ],
+  Automation: [
+    { label: 'Overview' }, { label: 'Workflows' }, { label: 'Workflow Builder' }, { label: 'Building Blocks', children: [{ label: 'Triggers' }, { label: 'Actions' }, { label: 'Conditions' }, { label: 'Branches' }] }, { label: 'Workflow Templates' }, { label: 'Scheduled Automations' }, { label: 'Management', children: [{ label: 'Active' }, { label: 'Paused' }] }, { label: 'Monitoring', children: [{ label: 'Run History' }, { label: 'Logs' }, { label: 'Errors' }] }, { label: 'Automation Analytics' },
+  ],
+  'AI Studio': [
+    { label: 'Overview' }, { label: 'AI Assistant' },
+    { label: 'AI Agents', children: [{ label: 'Agent Library' }, { label: 'Create Agent' }, { label: 'Configuration', children: [{ label: 'Instructions' }, { label: 'Data Sources' }, { label: 'Skills' }, { label: 'Permissions' }] }, { label: 'Actions & Tools' }, { label: 'Testing', children: [{ label: 'Test Runs' }, { label: 'Activity' }, { label: 'Analytics' }] }] },
+    { label: 'Content & Images' }, { label: 'Research & Intelligence' }, { label: 'Product Intelligence' }, { label: 'Brand Voice' }, { label: 'AI Autofill' }, { label: 'Reply Suggestions' }, { label: 'Installed Skills' }, { label: 'AI Activity' }, { label: 'AI Settings' },
+  ],
+  Integrations: [
+    { label: 'Overview' }, { label: 'Connected Apps' }, { label: 'Marketplace', children: [{ label: 'Apps' }, { label: 'Plugins' }, { label: 'Extensions' }, { label: 'Templates' }, { label: 'AI Skills' }] }, { label: 'Commerce Connectors' }, { label: 'Marketing & Advertising Connectors' }, { label: 'Communication Connectors', children: [{ label: 'WhatsApp' }, { label: 'Email' }, { label: 'SMS' }, { label: 'Voice Providers' }, { label: 'Social Messaging' }] }, { label: 'Payment Connectors' }, { label: 'Business Connectors' }, { label: 'Webhooks' }, { label: 'Sync Activity' },
+  ],
+  Settings: [
+    { label: 'Organization & Workspace Management', children: [{ label: 'Organization Profile' }, { label: 'Workspaces' }, { label: 'Locations' }] },
+    { label: 'Users & Access' }, { label: 'Business & Financial' }, { label: 'Documents & Receipts' },
+    { label: 'Brand & Appearance', children: [{ label: 'Appearance', children: [{ label: 'Color Theme' }, { label: 'Theme Style' }, { label: 'Typography' }, { label: 'Text Size' }, { label: 'Density' }, { label: 'Workspace Layout' }, { label: 'Surface Pattern' }, { label: 'Light / Dark Mode' }, { label: 'Brand Accent' }] }, { label: 'Branding' }] },
+    { label: 'Notifications' }, { label: 'Integrations' },
+    { label: 'Developer', children: [{ label: 'API Keys' }, { label: 'API Explorer' }, { label: 'OAuth' }, { label: 'Tokens' }, { label: 'API Usage' }, { label: 'Rate Limits' }, { label: 'Developer Logs' }] },
+    { label: 'Audit & Compliance', children: [{ label: 'Audit Log' }, { label: 'Security Events' }, { label: 'Data Changes' }] },
+    { label: 'Backup & Recovery', children: [{ label: 'Backups' }, { label: 'Restore' }, { label: 'Restore Points' }, { label: 'Export' }, { label: 'Reset Store Data' }] },
+    { label: 'Security & Verification', children: [{ label: 'Email Verification' }, { label: 'Phone Verification' }, { label: 'Business Verification' }, { label: '2FA' }] },
+    { label: 'System' },
+    { label: 'Plans & Billing', children: [{ label: 'Plan' }, { label: 'KIOSK Credits' }, { label: 'Usage' }, { label: 'Payment Method' }, { label: 'KIOSK Invoices' }, { label: 'Billing History' }] },
+  ],
 };
-
-const registry: ModuleGroup[] = [
-  {
-    label: 'Workspace',
-    items: [
-      { label: 'Dashboard', parent: 'Dashboard', description: 'Executive workspace overview.' },
-      { label: 'Today', parent: 'Today', description: 'Work that needs attention today.' },
-      { label: 'Activity', parent: 'Dashboard', description: 'Cross-workspace activity history.' },
-      { label: 'Inbox & Communications', parent: 'Inbox', description: 'Unified customer and team conversations.' },
-      { label: 'Voice & Calling', parent: 'Inbox', description: 'Calls, numbers, routing, IVR, recordings, voicemail and call analytics.' },
-      { label: 'WhatsApp Operations', parent: 'Inbox', description: 'WhatsApp numbers, templates, conversations and operational controls.' },
-      { label: 'Notifications', parent: 'Notifications', description: 'Business alerts, reminders and system notices.' },
-      { label: 'Global Search / Command Center', parent: 'Dashboard', description: 'Search records, pages and actions with Ctrl/Cmd+K.' },
-      { label: 'Global KIOSK Copilot', parent: 'AI Studio', description: 'Platform-wide contextual AI assistant.' },
-    ],
-  },
-  {
-    label: 'Sales & Customers',
-    items: [
-      { label: 'CRM & Customers', parent: 'CRM & Customers', description: 'Contacts, leads, customers, companies, deals and activities.' },
-      { label: 'Product & Service Interest', parent: 'CRM & Customers', description: 'Track what each contact is interested in across conversations and campaigns.' },
-      { label: 'Commerce', parent: 'Commerce', description: 'POS, orders, invoices, payments, returns and fulfillment.' },
-      { label: 'My Store Command Center', parent: 'Commerce', description: 'Seller command center across storefront, catalog, orders and inventory.' },
-      { label: 'Reviews & Reputation', parent: 'Commerce', description: 'Product/store reviews, requests, moderation and ratings.' },
-      { label: 'Catalog', parent: 'Catalog', description: 'Products, variants, inventory, warehouses and price books.' },
-      { label: 'Purchasing', parent: 'Purchasing', description: 'Suppliers, purchase orders, receiving and procurement.' },
-      { label: 'Customer Service', parent: 'Customer Service', description: 'Tickets, complaints, knowledge base and customer portal.' },
-    ],
-  },
-  {
-    label: 'Growth',
-    items: [
-      { label: 'Marketing & Growth', parent: 'Marketing & Growth', description: 'Campaigns, broadcasts, audiences, promotions and advertising.' },
-      { label: 'Lead Generation', parent: 'Marketing & Growth', description: 'Prospecting, scraping, enrichment, verification and CRM import.' },
-      { label: 'Affiliate Engine', parent: 'Marketing & Growth', description: 'Affiliates, referral links, commissions and performance.' },
-      { label: 'Funnels', parent: 'Funnels', description: 'Funnels, landing pages, forms, split tests and conversions.' },
-      { label: 'Build', parent: 'Build', description: 'Website, storefront, forms, pages, popups and themes.' },
-      { label: 'Venture', parent: 'Venture', description: 'Niche discovery, offer design, funnel generation and launch.' },
-    ],
-  },
-  {
-    label: 'Operations & People',
-    items: [
-      { label: 'Operations', parent: 'Operations', description: 'Projects, tasks, meetings, approvals, documents and branches.' },
-      { label: 'Projects', parent: 'Operations', description: 'Project boards, timelines, milestones, files and analytics.' },
-      { label: 'Team', parent: 'Team', description: 'People, departments, permissions, assignments and performance.' },
-      { label: 'Sales & Delivery Agents', parent: 'Team', description: 'Agent profiles, territories, assignment, availability and performance.' },
-      { label: 'HR', parent: 'HR', description: 'Employees, attendance, leave, payroll, reviews and onboarding.' },
-      { label: 'Learning & Academy', parent: 'Learning & Academy', description: 'Courses, students, progress, certificates and academy analytics.' },
-    ],
-  },
-  {
-    label: 'Business Intelligence',
-    items: [
-      { label: 'Finance & Accounting', parent: 'Finance & Accounting', description: 'Revenue, expenses, accounting, wallets, cash and taxes.' },
-      { label: 'Earnings & Commissions', parent: 'Finance & Accounting', description: 'Staff, agent and affiliate earnings, rules and payouts.' },
-      { label: 'Reports & Analytics', parent: 'Reports & Analytics', description: 'Cross-module dashboards, attribution and business intelligence.' },
-      { label: 'Planning & Strategy', parent: 'Planning & Strategy', description: 'Business planning, market analysis, financial models and KPIs.' },
-      { label: 'Automation', parent: 'Automation', description: 'Workflows, triggers, actions, schedules, run history and errors.' },
-      { label: 'AI Studio', parent: 'AI Studio', description: 'AI assistant, research, content, skills, agents and activity.' },
-      { label: 'AI Agents', parent: 'AI Studio', description: 'Create and manage task-specific AI agents and permissions.' },
-    ],
-  },
-  {
-    label: 'Platform',
-    items: [
-      { label: 'Integrations', parent: 'Integrations', description: 'Connected apps, connectors, webhooks and sync activity.' },
-      { label: 'Marketplace', parent: 'Integrations', description: 'Apps, plugins, extensions, templates and AI skills.' },
-      { label: 'Payment Connectors', parent: 'Integrations', description: 'Payment gateway and commerce payment integrations.' },
-      { label: 'Communication Connectors', parent: 'Integrations', description: 'WhatsApp, email, SMS, voice and social messaging providers.' },
-      { label: 'Settings', parent: 'Settings', description: 'Workspace configuration and governance.' },
-      { label: 'Appearance', parent: 'Settings', description: 'Color, style, typography, density, layout, surfaces and theme mode.' },
-      { label: 'Security & Verification', parent: 'Settings', description: 'Account, phone, email, business verification and security policies.' },
-      { label: 'Developer', parent: 'Settings', description: 'API keys, API explorer, OAuth, tokens and developer logs.' },
-      { label: 'Audit, Backup & Recovery', parent: 'Settings', description: 'Audit trail, security events, backups, restore points and recovery.' },
-      { label: 'Plans & Billing', parent: 'Settings', description: 'KIOSK plans, credits, usage, invoices and billing history.' },
-      { label: 'Organization & Workspace Management', parent: 'Settings', description: 'Organizations, workspaces, locations and access scope.' },
-      { label: 'Super Admin', parent: 'Settings', description: 'Platform administration for authorized users.' },
-    ],
-  },
-];
 
 const normalize = (value: string) => value.replace(/\s+/g, ' ').trim().toLowerCase();
 
-function findReactButton(label: string) {
-  const target = normalize(label);
-  return [...document.querySelectorAll<HTMLButtonElement>('.sidebar-nav .nav-item')]
-    .find((button) => normalize(button.textContent || '') === target);
-}
-
-function openParent(parent: string) {
-  const aliases: Record<string, string> = {
-    'Inbox & Communications': 'Inbox',
-  };
-  const target = findReactButton(aliases[parent] || parent);
-  target?.click();
-}
-
 function addStyles() {
-  if (document.getElementById('kiosk-all-modules-style')) return;
+  if (document.getElementById('kiosk-hierarchical-nav-style')) return;
   const style = document.createElement('style');
-  style.id = 'kiosk-all-modules-style';
+  style.id = 'kiosk-hierarchical-nav-style';
   style.textContent = `
-    .kiosk-all-modules-directory{margin-top:10px;padding-top:10px;border-top:1px solid rgba(148,163,184,.16)}
-    .kiosk-module-directory-title{padding:8px 10px 4px;font-size:10px;text-transform:uppercase;letter-spacing:.12em;font-weight:900;color:var(--sidebar-muted)}
-    .kiosk-module-directory-note{padding:0 10px 8px;font-size:10px;line-height:1.4;color:var(--sidebar-muted)}
-    .kiosk-module-group{margin-bottom:11px}
-    .kiosk-module-group-title{font-size:9px;text-transform:uppercase;letter-spacing:.09em;color:var(--sidebar-muted);font-weight:850;padding:7px 10px 4px}
-    .kiosk-module-item{position:relative}
-    .kiosk-module-item::after{content:'›';margin-left:auto;color:var(--sidebar-muted);font-size:14px}
-    .kiosk-module-icon{width:18px;height:18px;border-radius:5px;display:grid;place-items:center;flex:0 0 auto;background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent);font-size:9px;font-weight:900}
-    .collapsed .kiosk-module-directory-title,.collapsed .kiosk-module-directory-note,.collapsed .kiosk-module-group-title,.collapsed .kiosk-module-item .nav-label,.collapsed .kiosk-module-item::after{display:none}
-    .collapsed .kiosk-module-item{justify-content:center}
+    .kiosk-nav-parent{position:relative}
+    .kiosk-nav-parent>.kiosk-nav-toggle{margin-left:auto;width:24px;height:24px;border:0;background:transparent;color:var(--sidebar-muted);display:grid;place-items:center;border-radius:6px;transition:.16s ease;flex:0 0 auto}
+    .kiosk-nav-parent>.kiosk-nav-toggle:hover{background:rgba(148,163,184,.12);color:var(--sidebar-text)}
+    .kiosk-nav-parent.expanded>.kiosk-nav-toggle{transform:rotate(90deg)}
+    .kiosk-submenu{display:none;margin:2px 0 8px 28px;border-left:1px solid rgba(148,163,184,.18);padding-left:7px}
+    .kiosk-submenu.open{display:block}
+    .kiosk-submenu-row{position:relative}
+    .kiosk-submenu-button{width:100%;border:0;background:transparent;color:var(--sidebar-muted);padding:6px 8px;border-radius:7px;text-align:left;font-size:11.5px;display:flex;align-items:center;gap:6px;cursor:pointer}
+    .kiosk-submenu-button:hover{background:rgba(148,163,184,.1);color:var(--sidebar-text)}
+    .kiosk-submenu-button .kiosk-node-dot{width:5px;height:5px;border-radius:999px;background:currentColor;opacity:.45;flex:0 0 auto}
+    .kiosk-submenu-button .kiosk-node-label{flex:1;min-width:0}
+    .kiosk-node-chevron{font-size:12px;opacity:.7;transition:.16s ease}
+    .kiosk-submenu-row.open>.kiosk-submenu-button .kiosk-node-chevron{transform:rotate(90deg)}
+    .kiosk-submenu-children{display:none;margin-left:11px;border-left:1px solid rgba(148,163,184,.14);padding-left:5px}
+    .kiosk-submenu-row.open>.kiosk-submenu-children{display:block}
+    .kiosk-submenu-children .kiosk-submenu-button{font-size:10.8px;padding:5px 7px}
+    .kiosk-submenu-children .kiosk-submenu-children .kiosk-submenu-button{font-size:10.2px;opacity:.92}
+    .collapsed .kiosk-nav-toggle,.collapsed .kiosk-submenu{display:none!important}
   `;
   document.head.appendChild(style);
 }
 
-function renderDirectory() {
+function renderNodes(nodes: MenuNode[], parentButton: HTMLButtonElement) {
+  const container = document.createElement('div');
+  container.className = 'kiosk-submenu';
+
+  const renderLevel = (items: MenuNode[], host: HTMLElement) => {
+    items.forEach((node) => {
+      const row = document.createElement('div');
+      row.className = 'kiosk-submenu-row';
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'kiosk-submenu-button';
+      button.innerHTML = `<span class="kiosk-node-dot"></span><span class="kiosk-node-label"></span>${node.children?.length ? '<span class="kiosk-node-chevron">›</span>' : ''}`;
+      const label = button.querySelector<HTMLElement>('.kiosk-node-label');
+      if (label) label.textContent = node.label;
+      button.title = node.label;
+      button.addEventListener('click', (event) => {
+        event.stopPropagation();
+        if (node.children?.length) row.classList.toggle('open');
+        else parentButton.click();
+      });
+      row.appendChild(button);
+      if (node.children?.length) {
+        const children = document.createElement('div');
+        children.className = 'kiosk-submenu-children';
+        renderLevel(node.children, children);
+        row.appendChild(children);
+      }
+      host.appendChild(row);
+    });
+  };
+
+  renderLevel(nodes, container);
+  return container;
+}
+
+function enhanceNavigation() {
   const nav = document.querySelector<HTMLElement>('.sidebar-nav');
-  if (!nav || nav.querySelector('.kiosk-all-modules-directory')) return;
+  if (!nav) return;
+
+  nav.querySelector('.kiosk-all-modules-directory')?.remove();
   addStyles();
 
-  const wrapper = document.createElement('div');
-  wrapper.className = 'kiosk-all-modules-directory';
+  [...nav.querySelectorAll<HTMLButtonElement>('.nav-item')].forEach((button) => {
+    if (button.dataset.kioskHierarchy === 'true') return;
+    const label = (button.querySelector('.nav-label')?.textContent || button.textContent || '').trim();
+    const nodes = hierarchy[label];
+    if (!nodes?.length) return;
 
-  const heading = document.createElement('div');
-  heading.className = 'kiosk-module-directory-title';
-  heading.textContent = 'All Modules';
-  wrapper.appendChild(heading);
+    button.dataset.kioskHierarchy = 'true';
+    button.classList.add('kiosk-nav-parent');
 
-  const note = document.createElement('div');
-  note.className = 'kiosk-module-directory-note';
-  note.textContent = 'Permanent complete module registry. Major capabilities stay visible even while deeper workspaces are being wired.';
-  wrapper.appendChild(note);
-
-  const existing = new Set(
-    [...nav.querySelectorAll<HTMLButtonElement>('.nav-item')].map((button) => normalize(button.textContent || '')),
-  );
-
-  registry.forEach((group) => {
-    const section = document.createElement('div');
-    section.className = 'kiosk-module-group';
-    const title = document.createElement('div');
-    title.className = 'kiosk-module-group-title';
-    title.textContent = group.label;
-    section.appendChild(title);
-
-    group.items.forEach((item) => {
-      if (existing.has(normalize(item.label))) return;
-      const button = document.createElement('button');
-      button.className = 'nav-item kiosk-module-item';
-      button.type = 'button';
-      button.title = `${item.label} — ${item.description}`;
-      button.innerHTML = `<span class="kiosk-module-icon">K</span><span class="nav-label">${item.label}</span>`;
-      button.addEventListener('click', () => openParent(item.parent));
-      section.appendChild(button);
+    const toggle = document.createElement('span');
+    toggle.className = 'kiosk-nav-toggle';
+    toggle.textContent = '›';
+    toggle.setAttribute('role', 'button');
+    toggle.setAttribute('aria-label', `Expand ${label}`);
+    toggle.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const submenu = button.nextElementSibling as HTMLElement | null;
+      const shouldOpen = !submenu?.classList.contains('open');
+      nav.querySelectorAll('.kiosk-submenu.open').forEach((menu) => {
+        if (menu !== submenu) menu.classList.remove('open');
+      });
+      nav.querySelectorAll('.kiosk-nav-parent.expanded').forEach((parent) => {
+        if (parent !== button) parent.classList.remove('expanded');
+      });
+      submenu?.classList.toggle('open', shouldOpen);
+      button.classList.toggle('expanded', shouldOpen);
     });
+    button.appendChild(toggle);
 
-    if (section.querySelector('.kiosk-module-item')) wrapper.appendChild(section);
+    const submenu = renderNodes(nodes, button);
+    button.insertAdjacentElement('afterend', submenu);
   });
-
-  nav.appendChild(wrapper);
 }
 
 export function installAllModulesNavigation() {
@@ -179,10 +264,9 @@ export function installAllModulesNavigation() {
     scheduled = true;
     requestAnimationFrame(() => {
       scheduled = false;
-      renderDirectory();
+      enhanceNavigation();
     });
   };
-
   schedule();
   const observer = new MutationObserver(schedule);
   observer.observe(document.body, { childList: true, subtree: true });
