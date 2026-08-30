@@ -9,7 +9,7 @@ KIOSK is an e-commerce operating system for sellers. This document is the workin
 - Overview — Structured
 - Commerce — Structured
 - CRM & Customers — Structured
-- Catalog & Inventory — Framework
+- Catalog — Structured
 - Purchasing — Framework
 - Build — Framework
 - Marketing & Growth — Framework
@@ -58,10 +58,11 @@ Seller command center for sales, orders, conversion, abandoned carts, average or
 
 ### Commerce boundaries
 - Deals & Pipeline belong to CRM; a won deal can convert into a Quote or Order.
-- Products, Collections, Price Books, Inventory, and Warehouses belong to Catalog & Inventory.
-- Suppliers, Purchase Orders, and Receiving belong to Purchasing.
-- Storefront is managed from Commerce; Storefront Builder and visual design belong to Build.
+- Products, Collections, Variants, Price Books and Inventory belong to Catalog.
+- Suppliers, Purchase Orders and Receiving belong to Purchasing.
+- Storefront operations are managed from Commerce; Storefront Builder and visual design belong to Build.
 - Order/Sales Forms are designed in Build and can be launched contextually from Commerce.
+- Commerce consumes Catalog products rather than maintaining a second product system.
 
 ## 3. CRM & Customers
 
@@ -165,8 +166,6 @@ Company Profile can surface Contacts, Deals, Orders, Quotes, Activities, Meeting
 - Notes
 - Reminders
 
-CRM-related tasks can surface here and in Overview / Today while the broader task system remains canonically owned by Operations.
-
 ### Meetings
 - Meetings
 - Schedule Meeting
@@ -186,34 +185,96 @@ CRM-related tasks can surface here and in Overview / Today while the broader tas
 - Data Cleanup Rules
 - Import Mapping
 
-Duplicate Manager is surfaced from Contacts because it is primarily a people-data workflow, while merge rules and broader data-quality configuration live in Data & Customization.
-
-### CRM boundaries
-- Quotes & Contracts are canonically owned by Commerce → Sell. CRM exposes them contextually from deals, customers and companies.
-- Form Builder is canonically owned by Build → Forms. Lead forms can create CRM leads.
-- Loyalty & Reward Manager are canonically owned by Marketing & Growth → Loyalty & Rewards. Customer Center can display loyalty status and history.
-- General Tasks are canonically owned by Operations. CRM surfaces relationship-specific tasks and follow-ups.
-- Organization-wide Calendar remains connected to Operations while CRM provides contextual Meetings.
-- Campaign configuration belongs to Marketing & Growth; CRM owns the resulting contact identity, relationship record and attribution history.
-- Connected social and messaging sources must use authorized APIs, webhooks or business-accessible data rather than bypassing platform access controls.
-
 ### CRM lifecycle
 Contact → Lead → Qualify → Deal → Pipeline Stage → Quote → Order → Payment → Customer → Retention
 
 ### CRM attribution lifecycle
 Source → Campaign → Interaction → Contact → Lead → Deal → Customer → Order → Revenue
 
-## 4. Catalog & Inventory
-- Products
-- Collections / Categories
-- Variants
+## 4. Catalog
+
+Catalog is the canonical home for everything the business can sell and the product data required by every sales channel. Commerce, POS, Storefront, Build and Marketing reference Catalog products rather than maintaining duplicate product records.
+
+### Catalog Overview
+Catalog command center for:
+- Total products
+- Active / inactive products
+- Low-stock and out-of-stock items
+- Inventory value
+- Recently added products
+- Best sellers
+- Products requiring attention
+- Channel availability
+
+### Products
+- All Products
+- New Product
+- Physical Products
+- Digital Products
+- Services
+- Product Bundles
+- Variants & Options
+- Collections & Categories
 - Price Books
-- Inventory
+
+Product records can contain identity, SKU, barcode, pricing, cost, tax class, media, description, variants, inventory rules, sales-channel availability and fulfillment metadata.
+
+### Inventory
+- Inventory Overview
+- Stock Levels
 - Stock Adjustments
 - Stock Transfers
-- Warehouses
 - Physical Inventory
 - Low-Stock Alerts
+- Reorder Signals
+- Inventory History
+- Warehouses
+
+### Product Data & Imports
+- Bulk Import
+- CSV Import
+- CSV Export
+- Dropship Import
+- Import Mapping
+- Import History
+- Barcode Tools
+- Product Data Cleanup
+- Backup / Export Tools
+
+Dropship Import is an ingestion workflow. It does not create a separate dropshipping product database; imported products become normal Catalog records with supplier/source metadata.
+
+### Sales Channels
+Sales Channels controls where a Catalog product is available without duplicating the owning system.
+
+- Online Store availability
+- POS availability
+- Website availability
+- Sales / Order Form availability
+- Connected Store availability
+- Channel status and publishing state
+
+Examples:
+Product → enable on Storefront
+Product → enable in POS
+Product → include on Website
+Product → include in Sales Form
+
+The actual Storefront remains under Commerce and the visual Website / Storefront / Form builders remain under Build.
+
+### Catalog boundaries
+- Orders, checkout, payments and returns belong to Commerce.
+- Storefront transaction operations belong to Commerce; Storefront Builder belongs to Build.
+- Business Website and page design belong to Build.
+- Suppliers, Purchase Orders and Receiving belong to Purchasing.
+- Catalog Inventory owns stock records; Purchasing increases stock through receiving and Commerce decreases stock through sales/returns rules.
+- Product promotions and campaign execution belong to Marketing & Growth.
+- Product sales and inventory analytics can surface in Reports & Analytics.
+
+### Product lifecycle
+Create / Import → Configure → Price → Stock → Publish to Channels → Sell → Fulfill → Analyze
+
+### Inventory movement lifecycle
+Supplier / Adjustment / Transfer / Return → Inventory Ledger → Available Stock → Sale / Fulfillment → Updated Stock
 
 ## 5. Purchasing
 - Suppliers
@@ -349,8 +410,11 @@ Source → Campaign → Interaction → Contact → Lead → Deal → Customer �
 Customer/revenue flow:
 Acquire → CRM → Sell → Pay → Fulfill → Account → Retain
 
+Product/revenue flow:
+Create / Import Product → Catalog → Publish to Channel → Commerce → Order → Payment → Fulfillment → Revenue
+
 Supply flow:
-Supplier → Purchase → Receive → Inventory → Product → Storefront/POS → Order
+Supplier → Purchase → Receive → Catalog Inventory → Product → Storefront/POS → Order
 
 ## Architecture rule
 A capability has one canonical home but may have contextual entry points elsewhere. KIOSK should not create duplicate systems simply because a capability participates in several workflows. Any useful unplaced feature discovered during source review must remain recorded until assigned a canonical module.
@@ -358,6 +422,7 @@ A capability has one canonical home but may have contextual entry points elsewhe
 ## Deferred enhancement backlog
 - Role-based customizable dashboard presets
 - Commerce Command Center refinement
+- Venture / Venture Forge module structure
 - Unified AI Builder
 - Reviews & Reputation system
 - Advanced auto-order assignment rules
