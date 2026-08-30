@@ -18,7 +18,7 @@ KIOSK is an e-commerce operating system for sellers. This document is the workin
 - Finance & Accounting — Framework
 - Team — Structured
 - HR — Structured
-- Operations — Framework
+- Operations — Structured
 - Reports & Analytics — Framework
 - Automation & AI — Framework
 - Integrations — Framework
@@ -72,8 +72,6 @@ CRM owns people and organization records, prospects, customer relationships, opp
 Command center for contacts, lead volume, customer growth, pipeline value, follow-ups, conversion, forecast, source attribution and recent CRM activity.
 
 ### Contacts
-Contacts are the master people directory and identity layer for CRM.
-
 - All Contacts
 - Contact Profile / Contact Center
 - New Contact
@@ -487,22 +485,129 @@ HR owns employee lifecycle and workforce administration. It answers how an emplo
 - Team owns workspace users, roles, departments and access permissions.
 - Operations owns the canonical approval engine, meetings and organization-wide calendar.
 - Finance owns accounting and financial ledger treatment; HR owns employee compensation/payroll workflow.
-- Employee documents can surface from Operations/Documents while HR remains the canonical owner of HR-specific records.
+- Employee documents can surface from Operations → Documents & E-Signature while HR remains the canonical owner of HR-specific records and context.
 
 ### Employee lifecycle
 Hire → Onboard → Schedule → Attend → Perform → Compensate → Develop → Leave / Change → Offboard
 
 ## 13. Operations
-- Tasks
-- Calendar
-- Meetings
-- Approvals
-- Workflows
-- Locations / Branches operational view
-- Announcements context
-- Documents
+Operations owns cross-business work execution: projects, tasks, calendars, meetings, approvals, workflows, operational documents, e-signature and branch-level execution.
 
-Operations remains the canonical owner of the cross-business task system, calendar, meetings and approval engine.
+### Operations Overview
+Command center for active projects, overdue tasks, upcoming meetings, pending approvals, signature requests and cross-business operational activity.
+
+### Projects
+- All Projects
+- New Project
+- Project Workspace
+- Project Status
+- Milestones
+- Project Members
+- Project Timeline
+- Project Files
+- Project Activity
+
+Projects organize related work without creating a second task system.
+
+### Tasks
+- All Tasks
+- My Tasks
+- Assigned Tasks
+- Task Board
+- Priorities
+- Due Dates
+- Recurring Tasks
+- Completed Tasks
+- Task History
+
+Tasks are the canonical cross-business task records. CRM, Customer Service, HR, Purchasing and other modules may create or surface relevant tasks contextually.
+
+### Calendar
+- Organization Calendar
+- My Calendar
+- Team / Shared Calendar
+- Events
+- Deadlines
+- Schedules
+
+### Meetings
+- All Meetings
+- Schedule Meeting
+- Meeting Agenda
+- Attendees
+- Meeting Notes
+- Meeting History
+
+### Approvals
+- Approval Inbox
+- My Requests
+- Pending Approval
+- Approved
+- Rejected
+- Approval Rules
+- Approval History
+
+The approval engine is shared across purchasing, HR, finance, operations and other modules without creating separate approval systems.
+
+### Workflows
+- Operational Workflows
+- Workflow Templates
+- Recurring Processes
+- Checklists
+- Process History
+
+Automation rules and autonomous orchestration remain under Automation & AI; Operations owns the human/business process workspace.
+
+### Documents & E-Signature
+Documents & E-Signature is the canonical operational document workspace. Other modules can surface linked files without duplicating storage or signature records.
+
+#### Documents
+- All Documents
+- Recent
+- Shared With Me
+- Folders
+- Templates
+- Uploaded Files
+- Generated Documents
+- Archived
+- Document Activity
+
+#### E-Signature
+- Signature Requests
+- Awaiting Signature
+- Signed
+- Declined / Expired
+- Signers
+- Signature Templates
+- Signature History
+- Audit Trail
+
+Example cross-module workflow:
+Quote / Contract → Generate Document → Send for Signature → Customer / Supplier / Employee Signs → Signed Copy Stored → Audit Trail → Related Record Updated
+
+Commerce can launch signature requests from Quotes & Contracts, CRM can launch them from Deals/Customers, HR can use them for employment documents, and Purchasing can use them for supplier agreements while Operations remains the canonical document/signature system.
+
+### Locations / Branch Operations
+- Branch Operational View
+- Location Tasks
+- Location Calendar
+- Local Approvals
+- Operational Status
+
+Business location configuration belongs to Settings, Team owns staff/location assignment, Catalog owns warehouse/inventory records, and Operations owns branch-level execution views.
+
+### Operations boundaries
+- Announcements belong to Team → Team Communication.
+- Employee-specific document context belongs to HR, but the shared document/e-signature infrastructure belongs here.
+- Quotes & Contracts belong to Commerce; signed document artifacts can be stored here and linked back to Commerce.
+- API keys and audit/security logs belong to Settings.
+- Workflow automation rules belong to Automation & AI; Operations owns human-executed workflows and process tracking.
+
+### Project execution lifecycle
+Project → Milestone → Task → Assignee → Due Date → Completion → Project Activity
+
+### Document authorization lifecycle
+Create / Generate → Review → Send for Signature → Sign / Decline / Expire → Store Signed Record → Audit Trail
 
 ## 14. Reports & Analytics
 - Sales
@@ -516,6 +621,7 @@ Operations remains the canonical owner of the cross-business task system, calend
 - Finance
 - Fulfillment
 - Customer Service
+- Projects / Tasks
 - Custom Reports
 
 ## 15. Automation & AI
@@ -631,6 +737,12 @@ Invite User → Team / Department → Role & Permissions → Location Assignment
 
 Employee flow:
 Hire → Onboard → Schedule → Attendance → Performance → Compensation → Offboard
+
+Work execution flow:
+Project → Milestone → Task → Assignee → Completion → Activity / Reporting
+
+Document flow:
+Create / Generate → Review → Signature Request → Signed Record → Related Business Record → Audit Trail
 
 ## Architecture rule
 A capability has one canonical home but may have contextual entry points elsewhere. KIOSK should not create duplicate systems simply because a capability participates in several workflows. Any useful unplaced feature discovered during source review must remain recorded until assigned a canonical module.
