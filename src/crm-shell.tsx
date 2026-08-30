@@ -1,18 +1,19 @@
 import { createRoot, type Root } from 'react-dom/client';
 import {
   Activity, BarChart3, Building2, ChevronDown, ChevronRight, ContactRound,
-  Database, Handshake, LayoutDashboard, ListFilter, UsersRound,
+  Database, Handshake, LayoutDashboard, Radar, UsersRound,
 } from 'lucide-react';
 
 const crmItems = [
   ['CRM Overview', LayoutDashboard],
+  ['Contacts', ContactRound],
+  ['Contact Capture & Enrichment', Radar],
   ['Customers', UsersRound],
   ['Leads', ContactRound],
   ['Companies', Building2],
   ['Deals & Pipeline', Handshake],
   ['Activities & Follow-ups', Activity],
   ['Meetings', UsersRound],
-  ['Segments & Smart Lists', ListFilter],
   ['CRM Intelligence', BarChart3],
   ['Data & Customization', Database],
 ] as const;
