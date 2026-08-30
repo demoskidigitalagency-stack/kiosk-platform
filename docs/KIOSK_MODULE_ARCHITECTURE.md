@@ -16,12 +16,13 @@ KIOSK is an e-commerce operating system for sellers. This document is the workin
 - Inbox & Communications — Framework
 - Customer Service — Structured
 - Finance & Accounting — Framework
-- Team & HR — Framework
+- Team — Structured
+- HR — Structured
 - Operations — Framework
 - Reports & Analytics — Framework
 - Automation & AI — Framework
 - Integrations — Framework
-- Settings — Framework; Appearance started
+- Settings — Structured; Appearance implemented with local persistence
 
 ## 1. Overview
 - Dashboard
@@ -65,7 +66,6 @@ Seller command center for sales, orders, conversion, abandoned carts, average or
 - Commerce consumes Catalog products rather than maintaining a second product system.
 
 ## 3. CRM & Customers
-
 CRM owns people and organization records, prospects, customer relationships, opportunities, attribution and sales relationship activity. A person should not be duplicated simply because they progress from contact to lead to customer.
 
 ### CRM Overview
@@ -83,28 +83,7 @@ Contacts are the master people directory and identity layer for CRM.
 - Imports
 - Duplicate Manager
 
-A Contact can later be classified or converted into a Lead or Customer and can be associated with one or more Companies, Deals, Campaigns and Conversations without creating unnecessary duplicate person records.
-
 ### Contact Capture & Enrichment
-Contact Capture & Enrichment is the CRM ingestion and attribution workspace. It is designed for first-party data and authorized connected sources.
-
-#### Sources
-- Website forms
-- Landing pages
-- Sales / order forms
-- Storefront and checkout
-- Web chat
-- WhatsApp conversations
-- Authorized Facebook / Instagram conversations
-- Authorized Facebook / Instagram lead forms
-- Authorized page/post interactions where connected platform APIs expose the data
-- Email
-- CSV imports
-- Connected third-party applications
-- Manual entry
-- API / Webhook
-
-#### Capture workspace
 - Sources
 - Captured Contacts
 - Attribution
@@ -112,34 +91,12 @@ Contact Capture & Enrichment is the CRM ingestion and attribution workspace. It 
 - Capture History
 - Review Queue
 
-#### Attribution fields
-Captured interactions can retain:
-- Source
-- Channel
-- Campaign
-- Ad Set
-- Ad / Creative
-- Post
-- Form
-- Conversation
-- Landing Page
-- First Interaction
-- Last Interaction
-- Interaction Type
-- Contact Owner
-- Lead / Customer Status
-
-Campaign attribution should support the lifecycle:
-Campaign → Contacts → Leads → Deals → Orders → Revenue
-
-Marketing can expose Campaign Contacts contextually, but CRM remains the canonical owner of contact identity and relationship records.
+Authorized sources can include website forms, landing pages, sales/order forms, storefront/checkout, web chat, WhatsApp, authorized Facebook/Instagram interactions and lead forms, email, CSV, connected apps, manual entry, APIs and webhooks.
 
 ### Customers
 - Customer List
 - Customer Center
 - New Customer
-
-Customer Center is the 360-degree customer workspace. Contextual views can include Overview, Orders, Payments, Invoices, Conversations, Activities, Tasks, Meetings, Deals, Loyalty, Notes and Files.
 
 ### Leads
 - Lead List
@@ -151,8 +108,6 @@ Customer Center is the 360-degree customer workspace. Contextual views can inclu
 - Company List
 - New Company
 - Company Profile
-
-Company Profile can surface Contacts, Deals, Orders, Quotes, Activities, Meetings, Notes and Files contextually.
 
 ### Deals & Pipeline
 - Deals
@@ -192,11 +147,9 @@ Contact → Lead → Qualify → Deal → Pipeline Stage → Quote → Order →
 Source → Campaign → Interaction → Contact → Lead → Deal → Customer → Order → Revenue
 
 ## 4. Catalog
-
 Catalog is the canonical home for everything the business can sell and the product data required by every sales channel. Commerce, POS, Storefront, Build and Marketing reference Catalog products rather than maintaining duplicate product records.
 
 ### Catalog Overview
-Catalog command center for:
 - Total products
 - Active / inactive products
 - Low-stock and out-of-stock items
@@ -216,8 +169,6 @@ Catalog command center for:
 - Variants & Options
 - Collections & Categories
 - Price Books
-
-Product records can contain identity, SKU, barcode, pricing, cost, tax class, media, description, variants, inventory rules, sales-channel availability and fulfillment metadata.
 
 ### Inventory
 - Inventory Overview
@@ -241,25 +192,13 @@ Product records can contain identity, SKU, barcode, pricing, cost, tax class, me
 - Product Data Cleanup
 - Backup / Export Tools
 
-Dropship Import is an ingestion workflow. It does not create a separate dropshipping product database; imported products become normal Catalog records with supplier/source metadata.
-
 ### Sales Channels
-Sales Channels controls where a Catalog product is available without duplicating the owning system.
-
 - Online Store availability
 - POS availability
 - Website availability
 - Sales / Order Form availability
 - Connected Store availability
 - Channel status and publishing state
-
-Examples:
-Product → enable on Storefront
-Product → enable in POS
-Product → include on Website
-Product → include in Sales Form
-
-The actual Storefront remains under Commerce and the visual Website / Storefront / Form builders remain under Build.
 
 ### Catalog boundaries
 - Orders, checkout, payments and returns belong to Commerce.
@@ -268,13 +207,9 @@ The actual Storefront remains under Commerce and the visual Website / Storefront
 - Suppliers, Purchase Orders and Receiving belong to Purchasing.
 - Catalog Inventory owns stock records; Purchasing increases stock through receiving and Commerce decreases stock through sales/returns rules.
 - Product promotions and campaign execution belong to Marketing & Growth.
-- Product sales and inventory analytics can surface in Reports & Analytics.
 
 ### Product lifecycle
 Create / Import → Configure → Price → Stock → Publish to Channels → Sell → Fulfill → Analyze
-
-### Inventory movement lifecycle
-Supplier / Adjustment / Transfer / Return → Inventory Ledger → Available Stock → Sale / Fulfillment → Updated Stock
 
 ## 5. Purchasing
 - Suppliers
@@ -323,17 +258,15 @@ Supplier / Adjustment / Transfer / Return → Inventory Ledger → Available Sto
 - Assigned Conversations
 
 ## 9. Customer Service
-
 Customer Service is the canonical home for support operations. It consolidates Helpdesk, Tickets, Knowledge Base, Customer Portal, Customer Service and Complaints into one service system.
 
 ### Service Overview
-Command center for:
 - Open tickets
 - Unassigned tickets
 - Overdue / SLA-risk cases
 - Open complaints
-- Average first-response time
-- Average resolution time
+- First-response time
+- Resolution time
 - Resolution rate
 - Customer satisfaction
 - Recent escalations
@@ -343,10 +276,7 @@ Command center for:
 - My Tickets
 - Assigned Tickets
 - Unassigned Tickets
-- Open
-- Pending
-- Resolved
-- Closed
+- Open / Pending / Resolved / Closed
 - Priority & Categories
 - Assignment
 - SLA & Escalation
@@ -370,7 +300,6 @@ Command center for:
 - Customer-facing Articles
 
 ### Customer Portal
-Customer-facing self-service area for:
 - Submit Ticket
 - Track Ticket
 - Submit Complaint
@@ -380,7 +309,6 @@ Customer-facing self-service area for:
 - Manage Profile / Account
 
 ### Service Workspace
-Unified agent workspace that can surface the same underlying records contextually:
 - Customer Profile
 - Conversation
 - Ticket / Complaint
@@ -402,18 +330,7 @@ Unified agent workspace that can surface the same underlying records contextuall
 - Escalation Trends
 
 ### Customer Service boundaries
-- Inbox & Communications owns channels and conversations such as WhatsApp, Email, SMS, Facebook / Instagram and Web Chat.
-- Customer Service owns the case requiring resolution: Ticket, Complaint, escalation, SLA and resolution workflow.
-- A conversation can create or link to a Ticket / Complaint without creating a duplicate conversation system.
-- Customer Service may surface Orders, Payments, Returns and Customer records contextually, while those remain canonically owned by Commerce, Finance and CRM.
-- Returns Support handles the service case around a return; the financial / transaction return remains under Commerce → Returns & Refunds.
-- Knowledge Base can be exposed through Customer Portal and contextual agent assistance without creating separate article databases.
-
-### Service workflow
-Incoming Conversation / Portal Request → Create or Link Ticket → Assign → Investigate → Escalate if Needed → Resolve → Notify Customer → Close → Report
-
-### Complaint workflow
-Complaint Received → Customer / Order Context → Investigation → Resolution / Escalation → Customer Notification → Close → History / Analytics
+Inbox & Communications owns the conversation/channel. Customer Service owns the case requiring resolution. CRM owns customer identity. Commerce owns transactional returns/refunds and orders. These records can be surfaced contextually without creating duplicate systems.
 
 ## 10. Finance & Accounting
 - Accounting
@@ -426,40 +343,182 @@ Complaint Received → Customer / Order Context → Investigation → Resolution
 - Financial Statements
 - Reconciliation
 
-## 11. Team & HR
-- Employees
-- Roles & Permissions
-- Attendance
-- Clock In / Out
-- Shifts
-- Leave
-- Performance
-- Commissions
+## 11. Team
+Team owns workspace membership, organizational structure, operational assignment and application access. It answers who works in the KIOSK workspace, where they belong and what they can access.
 
-## 12. Operations
+### Team Overview
+Command center for active users, invitations, teams, locations, roles, access issues, performance signals and recent team activity.
+
+### People
+- All Users / Staff
+- Invite User
+- User Profile
+- Active Users
+- Inactive Users
+- Pending Invitations
+
+### Teams & Departments
+- Teams
+- Departments
+- Team Members
+- Managers
+- Team Structure
+
+### Roles & Permissions
+- Roles
+- Permission Sets
+- Role Assignment
+- User Access
+- Module Access
+- Location Access
+
+### Locations & Assignment
+- Store / Business Locations
+- Staff Assignment
+- Delivery Agents
+- Location Access
+- Assignment History
+
+Business/location configuration remains under Settings; Team owns who is assigned to each location.
+
+### Performance
+- Staff Performance
+- Sales Performance
+- Goals / Targets
+- Leaderboard
+- Performance History
+
+### Team Communication
+- Team Chat
+- Announcements
+- Internal Updates
+
+### Team boundaries
+- Employment lifecycle, attendance, leave, payroll and employee documents belong to HR.
+- Meetings and organization-wide Calendar belong canonically to Operations and can surface contextually on Team profiles.
+- Approvals belong canonically to Operations; Team and HR can initiate approval requests.
+- Audit Log belongs to Settings → Audit & Compliance.
+- A Team User can link to an HR Employee record without creating duplicate identities.
+
+### Team access lifecycle
+Invite → Activate User → Assign Team / Department → Assign Role → Assign Location → Work → Review Access → Deactivate
+
+## 12. HR
+HR owns employee lifecycle and workforce administration. It answers how an employee is hired, scheduled, compensated, reviewed and eventually offboarded.
+
+### HR Overview
+- Headcount
+- Attendance Today
+- Staff on Leave
+- Upcoming Shifts
+- Pending HR Approvals
+- Payroll / Compensation Status
+- New Hires
+- Upcoming Reviews
+
+### Employee Directory
+- All Employees
+- Employee Profile
+- Employment Status
+- Job Title
+- Department
+- Manager
+- Work Location
+- Employment History
+
+### Attendance
+- Attendance Overview
+- Clock In / Out
+- Attendance History
+- Late / Absent Records
+- Time Entries
+- Timesheets
+
+### Shifts & Scheduling
+- Shift Calendar
+- Shift Templates
+- Assign Shifts
+- Schedule Changes
+- Shift History
+
+### Leave & Time Off
+- Leave Requests
+- Leave Balances
+- Leave Calendar
+- Time-off Policies
+- Approval Status
+
+### Payroll & Compensation
+- Payroll Overview
+- Compensation
+- Commissions
+- Bonuses / Adjustments
+- Payroll History
+
+### Performance Reviews
+- Review Cycles
+- Employee Reviews
+- Goals
+- Manager Feedback
+- Review History
+
+### Documents & Policies
+- Employee Documents
+- Contracts
+- HR Policies
+- Acknowledgements
+- Document History
+
+### Onboarding
+- New Hire Checklist
+- Account / Role Request
+- Documents
+- Orientation Tasks
+- Equipment / Access
+
+### Offboarding
+- Offboarding Checklist
+- Access Removal Request
+- Asset Return
+- Final Documents
+- Exit Notes
+
+### HR boundaries
+- Team owns workspace users, roles, departments and access permissions.
+- Operations owns the canonical approval engine, meetings and organization-wide calendar.
+- Finance owns accounting and financial ledger treatment; HR owns employee compensation/payroll workflow.
+- Employee documents can surface from Operations/Documents while HR remains the canonical owner of HR-specific records.
+
+### Employee lifecycle
+Hire → Onboard → Schedule → Attend → Perform → Compensate → Develop → Leave / Change → Offboard
+
+## 13. Operations
 - Tasks
 - Calendar
 - Meetings
 - Approvals
 - Workflows
-- Locations / Branches
-- Announcements
+- Locations / Branches operational view
+- Announcements context
 - Documents
 
-## 13. Reports & Analytics
+Operations remains the canonical owner of the cross-business task system, calendar, meetings and approval engine.
+
+## 14. Reports & Analytics
 - Sales
 - Orders
 - Products
 - Inventory
 - Customers
 - Marketing
-- Staff
+- Team / Staff
+- HR
 - Finance
 - Fulfillment
 - Customer Service
 - Custom Reports
 
-## 14. Automation & AI
+## 15. Automation & AI
 - Workflows
 - Triggers
 - Automation Rules
@@ -468,29 +527,91 @@ Complaint Received → Customer / Order Context → Investigation → Resolution
 - Recommendations
 - Automation Logs
 
-## 15. Integrations
+## 16. Integrations
 - Connected Apps
 - WooCommerce
 - WordPress
 - Meta / Google
 - Payment Gateways
 - Shipping Providers
-- API
+- API Connections
 - Webhooks
-- Import / Export
+- Import / Export Connections
 
-## 16. Settings
-- Business
-- Locations
-- Users
+## 17. Settings
+Settings owns workspace configuration, governance, personal preferences and security. It does not replace Team for day-to-day user management or Integrations for connected-app operations.
+
+### Business & Workspace
+- Business Profile
+- Workspace
+- Location Configuration
+- Currency
+- Locale
+- Date / Time Defaults
+
+### Appearance & Branding
 - Appearance
-- Branding
-- Notifications
+- Theme
+- Color Mode
+- Accent Color
+- Typography
+- Density
+- Layout
+- Surface Pattern
+- Custom Branding
+- Logo / Brand Assets
+
+Appearance is already implemented in the frontend with local persistence and remains the canonical visual-system configuration area.
+
+### Notifications
+- Notification Preferences
+- Email Preferences
+- SMS Preferences
+- Push / In-app Preferences
+- Notification Rules
+
+### Security
+- Security Settings
+- Two-Factor Authentication (2FA)
+- Login Policies
+- Sessions / Devices
+- Password / Authentication Controls
+
+### Developer
+- API Keys
+- Webhooks Configuration
+- Developer Settings
+- API Access Policies
+
+Actual third-party connections remain under Integrations; Settings controls developer credentials and platform-level configuration.
+
+### Audit & Compliance
+- Audit Log
+- Login History
+- Security Events
+- Data Activity
+- Administrative Changes
+
+### Preferences
+- Personal Preferences
+- Language
+- Date / Time
+- Display Preferences
+
+### System Configuration
 - Templates
 - Commerce Settings
 - Tax
-- Currency
-- Security
+- Currency Rules
+- Numbering / Document Sequences
+- Business Defaults
+
+### Settings boundaries
+- Users, teams, departments, roles and permissions belong to Team; Settings may expose administrative shortcuts only.
+- Employee records belong to HR.
+- Connected apps belong to Integrations; API keys and platform developer settings belong to Settings → Developer.
+- Business location configuration belongs here; staff assignment belongs to Team and operational location usage can surface in Operations.
+- Audit Log and security events belong here and can be filtered contextually from a User profile.
 
 ## Operating model
 Customer/revenue flow:
@@ -505,6 +626,12 @@ Supplier → Purchase → Receive → Catalog Inventory → Product → Storefro
 Service flow:
 Conversation / Portal Request → Ticket / Complaint → Resolution → Customer Notification → Service History → Analytics
 
+People/access flow:
+Invite User → Team / Department → Role & Permissions → Location Assignment → Access Review → Deactivate
+
+Employee flow:
+Hire → Onboard → Schedule → Attendance → Performance → Compensation → Offboard
+
 ## Architecture rule
 A capability has one canonical home but may have contextual entry points elsewhere. KIOSK should not create duplicate systems simply because a capability participates in several workflows. Any useful unplaced feature discovered during source review must remain recorded until assigned a canonical module.
 
@@ -516,3 +643,4 @@ A capability has one canonical home but may have contextual entry points elsewhe
 - Reviews & Reputation system
 - Advanced auto-order assignment rules
 - Backend persistence/auth/data integrations
+- Replace temporary DOM navigation bridges with direct React navigation/router
