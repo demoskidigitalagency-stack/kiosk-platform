@@ -14,7 +14,7 @@ KIOSK is an e-commerce operating system for sellers. This document is the workin
 - Build — Framework
 - Marketing & Growth — Framework
 - Inbox & Communications — Framework
-- Customer Service — Framework
+- Customer Service — Structured
 - Finance & Accounting — Framework
 - Team & HR — Framework
 - Operations — Framework
@@ -323,12 +323,97 @@ Supplier / Adjustment / Transfer / Return → Inventory Ledger → Available Sto
 - Assigned Conversations
 
 ## 9. Customer Service
-- Tickets
-- Complaints
-- Knowledge Base
-- Customer Portal
-- Returns Support
-- Service History
+
+Customer Service is the canonical home for support operations. It consolidates Helpdesk, Tickets, Knowledge Base, Customer Portal, Customer Service and Complaints into one service system.
+
+### Service Overview
+Command center for:
+- Open tickets
+- Unassigned tickets
+- Overdue / SLA-risk cases
+- Open complaints
+- Average first-response time
+- Average resolution time
+- Resolution rate
+- Customer satisfaction
+- Recent escalations
+
+### Tickets & Helpdesk
+- All Tickets
+- My Tickets
+- Assigned Tickets
+- Unassigned Tickets
+- Open
+- Pending
+- Resolved
+- Closed
+- Priority & Categories
+- Assignment
+- SLA & Escalation
+
+### Complaints
+- All Complaints
+- New Complaint
+- Investigation Queue
+- Escalated Complaints
+- Resolved Complaints
+- Complaint Categories
+- Complaint History
+
+### Knowledge Base
+- All Articles
+- Categories
+- Drafts
+- Published Articles
+- FAQs
+- Internal Articles
+- Customer-facing Articles
+
+### Customer Portal
+Customer-facing self-service area for:
+- Submit Ticket
+- Track Ticket
+- Submit Complaint
+- View Service History
+- View Orders / Service Records
+- Search Knowledge Base
+- Manage Profile / Account
+
+### Service Workspace
+Unified agent workspace that can surface the same underlying records contextually:
+- Customer Profile
+- Conversation
+- Ticket / Complaint
+- Orders
+- Payments
+- Notes
+- Activities
+- Files
+- Resolution History
+
+### Service Reports
+- Ticket Volume
+- First-response Time
+- Resolution Time
+- SLA Performance
+- Agent Performance
+- Complaint Trends
+- Customer Satisfaction
+- Escalation Trends
+
+### Customer Service boundaries
+- Inbox & Communications owns channels and conversations such as WhatsApp, Email, SMS, Facebook / Instagram and Web Chat.
+- Customer Service owns the case requiring resolution: Ticket, Complaint, escalation, SLA and resolution workflow.
+- A conversation can create or link to a Ticket / Complaint without creating a duplicate conversation system.
+- Customer Service may surface Orders, Payments, Returns and Customer records contextually, while those remain canonically owned by Commerce, Finance and CRM.
+- Returns Support handles the service case around a return; the financial / transaction return remains under Commerce → Returns & Refunds.
+- Knowledge Base can be exposed through Customer Portal and contextual agent assistance without creating separate article databases.
+
+### Service workflow
+Incoming Conversation / Portal Request → Create or Link Ticket → Assign → Investigate → Escalate if Needed → Resolve → Notify Customer → Close → Report
+
+### Complaint workflow
+Complaint Received → Customer / Order Context → Investigation → Resolution / Escalation → Customer Notification → Close → History / Analytics
 
 ## 10. Finance & Accounting
 - Accounting
@@ -371,6 +456,7 @@ Supplier / Adjustment / Transfer / Return → Inventory Ledger → Available Sto
 - Staff
 - Finance
 - Fulfillment
+- Customer Service
 - Custom Reports
 
 ## 14. Automation & AI
@@ -415,6 +501,9 @@ Create / Import Product → Catalog → Publish to Channel → Commerce → Orde
 
 Supply flow:
 Supplier → Purchase → Receive → Catalog Inventory → Product → Storefront/POS → Order
+
+Service flow:
+Conversation / Portal Request → Ticket / Complaint → Resolution → Customer Notification → Service History → Analytics
 
 ## Architecture rule
 A capability has one canonical home but may have contextual entry points elsewhere. KIOSK should not create duplicate systems simply because a capability participates in several workflows. Any useful unplaced feature discovered during source review must remain recorded until assigned a canonical module.
