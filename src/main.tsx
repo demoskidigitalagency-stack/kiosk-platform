@@ -14,6 +14,7 @@ import './operations-shell.css';
 import './growth-suite-shell.css';
 import './finance-planning-shell.css';
 import './insights-notifications-shell.css';
+import './integrations-shell.css';
 import './dashboard-mount';
 import './commerce-shell';
 import './crm-shell';
@@ -24,6 +25,7 @@ import './operations-shell';
 import './growth-suite-shell';
 import './finance-planning-shell';
 import './insights-notifications-shell';
+import './integrations-shell';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
