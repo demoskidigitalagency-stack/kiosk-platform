@@ -7,9 +7,11 @@ import './today.css';
 import './dashboard-customization.css';
 import './commerce-shell.css';
 import './crm-shell.css';
+import './catalog-shell.css';
 import './dashboard-mount';
 import './commerce-shell';
 import './crm-shell';
+import './catalog-shell';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
