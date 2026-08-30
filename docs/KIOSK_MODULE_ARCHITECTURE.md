@@ -24,7 +24,7 @@ KIOSK is an e-commerce operating system for sellers. This document is the workin
 17. Reports & Analytics — Structured
 18. Notifications — Structured
 19. Automation — Structured
-20. AI Studio — Structured
+20. AI Studio — Structured; platform-wide AI Copilot architecture defined
 21. Integrations — Structured
 22. Learning & Academy — Structured
 23. Settings — Structured; Appearance implemented with local persistence
@@ -228,16 +228,115 @@ KIOSK is an e-commerce operating system for sellers. This document is the workin
 - Automation Analytics
 
 ## 20. AI Studio
-- AI Overview
-- AI Assistant
+AI Studio is the full workspace for KIOSK AI capabilities. The AI Assistant also exists as a platform-wide popup/drawer so users can ask KIOSK to work across the application without navigating to AI Studio first.
+
+### AI Overview
+- Usage Summary
+- Recent Conversations
+- Recent AI Actions
+- Suggested Workflows
+- Installed Skills
+
+### AI Assistant
+- Full Assistant
+- Conversation History
+- Saved Conversations
+- Suggested Actions
+- Recent AI Actions
+
+### Platform Copilot
+- Global AI Popup / Drawer
+- Current Page Context
+- Selected Record Context
+- Quick Commands
+- Ask KIOSK
+- Command Palette
+- Expand to AI Studio
+- Voice Input later
+
+The Copilot should be available from every KIOSK module and understand the current page/record where permissions allow.
+
+### AI Actions
+- Search
+- Create
+- Update
+- Analyze
+- Summarize
+- Autofill
+- Generate
+- Coordinate Cross-Module Work
+
+AI actions must use a controlled KIOSK Action Layer rather than arbitrary database manipulation. Each action should declare required inputs, permissions, risk level, confirmation requirements, affected records and audit metadata.
+
+### AI Autofill
+Reusable throughout KIOSK forms:
+- Fill with AI
+- Complete Missing Fields
+- Improve with AI
+- Generate Description
+- Extract Information
+- Suggest Category
+- Summarize
+- Generate from Business Data
+
+Applicable to products, CRM records, messages, documents, campaigns, courses, business plans, websites/pages and other supported forms.
+
+### AI Research & Context
+The assistant may gather context from:
+- Internal KIOSK Data
+- Current Page / Selected Record
+- Authorized Connected Apps
+- Uploaded Files / Documents
+- External / Public Research when required and allowed
+- Research Sources / Provenance
+- Research History
+
+Resolution order for missing information: current context → KIOSK records → authorized integrations → user files → external/public research where appropriate → ask user. Required business values must not be invented.
+
+### AI Content Tools
 - Content Generator
 - Image Generator
 - Reply Suggestions
 - Sentiment & Insights
 - AI Voice
-- Installed AI Skills
-- AI Settings
-- AI History / Generations
+
+### AI Skills
+- Installed Skills
+- Skill Permissions
+- Skill Configuration
+- Skill Updates
+
+AI skills are discovered/installed through Integrations → Marketplace → AI Skills and used/managed through AI Studio.
+
+### AI Activity
+- AI Action History
+- Pending Approvals
+- Failed Actions
+- Usage
+- Contextual AI Audit Trail
+
+Permanent organization-wide audit records remain Settings → Audit & Compliance → Audit Log.
+
+### AI Settings
+- Assistant Preferences
+- Allowed Data Sources
+- External Research Preferences
+- Confirmation Preferences within policy boundaries
+- Voice Settings
+- Privacy / Data Controls
+- Model / Provider Configuration later
+
+### AI permission and execution model
+AI inherits the user's KIOSK permissions and must never bypass role restrictions.
+
+Low-risk work such as search, summarization, analysis, drafting and previews can generally proceed within permission. High-impact actions such as sending external messages, publishing campaigns/websites, issuing refunds, deleting records, bulk changes, sensitive financial changes, permission/security changes and consequential integration actions require appropriate permission and explicit confirmation.
+
+Execution lifecycle: Read → Draft → Preview → Confirm when required → Execute → Verify → Audit
+
+### AI / Automation boundary
+AI Assistant handles conversational reasoning and ad-hoc intelligent work. Automation owns persistent event-driven workflows. When a user asks for recurring behavior, AI can prepare an Automation workflow for review rather than keeping hidden recurring behavior inside the assistant conversation.
+
+Detailed architecture: `docs/KIOSK_AI_ASSISTANT_ARCHITECTURE.md`.
 
 ## 21. Integrations
 - Integration Overview
@@ -351,236 +450,39 @@ Identity flow: CRM Contact → Student Profile → Enrollment → Course Progres
 - Affiliate Performance
 
 ## 23. Settings
-Settings is the canonical configuration layer for the KIOSK workspace. It consolidates Sync CRM Store Information / Channel / WordPress / Template / Brand, Kiosk CRM 2 Organization / Website / CMS, Kiosk CRM 1 Themes & Settings, and the KIOSK settings architecture already defined.
+Settings is the canonical configuration layer for the KIOSK workspace. The detailed Settings consolidation is maintained in `docs/KIOSK_SETTINGS_ARCHITECTURE.md`.
 
-Settings must configure other modules without duplicating their operational systems. For example, WordPress connectivity belongs to Integrations; website creation belongs to Build; communication channels belong to Inbox & Communications; Settings stores defaults, policies and shortcuts.
+Primary groups:
+- Organization & Locations
+- Users & Access
+- Business & Financial
+- Documents & Receipts
+- Brand & Appearance
+- Notifications
+- Integrations
+- Developer
+- Audit, Backup & Recovery
+- System
+- Plans & Billing
 
-### Settings Overview
-- Workspace Status
-- Business Profile Completion
-- Connected Services Summary
-- Branding Status
-- Website / Domain Status
-- Security Status
-- Billing Status
-- Recent Configuration Changes
-
-### Organization & Business
-Canonical home for Sync Store Information and Kiosk CRM 2 Organization.
-- Organization Profile
-- Business / Store Information
-- Legal Business Name
-- Display Name
-- Business Type
-- Contact Information
-- Business Address
-- Logo / Business Assets
-- Locations / Branches
-- Default Location
-- Currency
-- Locale / Language
-- Time Zone
-- Date / Time Format
-- Tax Identity / Registration Fields
-
-Location configuration lives here. Operational branch activity remains Operations, staff assignment remains Team, and warehouse stock remains Catalog.
-
-### Brand & Appearance
-Consolidates Sync Brand, Kiosk CRM 1 Themes, and the Appearance system already implemented in KIOSK.
-
-#### Brand
-- Brand Name
-- Logo
-- Icon / Favicon
-- Brand Colors
-- Brand Assets
-- Email Branding
-- Document Branding
-- Storefront Branding Defaults
-- Social / Sharing Assets
-
-#### Appearance — already implemented with local persistence
-- Color Themes
-- Theme Style
-- Typography
-- Text Scale
-- Density
-- App Layout
-- Surface Pattern
-- Light / Dark Mode
-- Accent Color
-
-Brand and Appearance are related but distinct: Brand defines the business identity presented to customers; Appearance controls how the KIOSK application workspace looks to its users.
-
-### Website & CMS
-Consolidates Kiosk CRM 2 Website / CMS and relevant Sync settings without duplicating Build.
-- Website Settings
-- Primary Website
-- Storefront URL
-- Domain Defaults
-- SEO Defaults
-- Site Metadata
-- Social Sharing Defaults
-- CMS Preferences
-- Content Defaults
-- Navigation Defaults
-- Homepage Assignment
-- Maintenance / Visibility Settings
-
-Boundary: Build owns Website Builder, Pages, Navigation, Storefront Builder, Templates and visual page editing. Settings → Website & CMS owns defaults, publishing configuration and workspace-level website preferences.
-
-### Channels
-Consolidates Sync CRM Channel settings while avoiding duplication with Inbox & Communications and Integrations.
-- Default Communication Channel
-- Channel Preferences
-- Business Contact Channels
-- Sender Identity Defaults
-- Customer Reply Routing
-- Channel Availability by Team / Location
-- Quiet Hours / Sending Windows
-- Channel Policy Defaults
-- Open Channel Setup
-
-Connection setup and provider authorization live in Integrations / Inbox Channel Setup. Settings controls workspace defaults and routing policy.
-
-### WordPress & External Store Settings
-WordPress must not become a second integration manager inside Settings.
-- WordPress Shortcut
-- WooCommerce Shortcut
-- Connected Store Summary
-- Default Sync Preferences
-- Store Mapping Defaults
-- Open Integration Settings
-
-Canonical connection ownership: Integrations → Commerce Connectors → WordPress / WooCommerce.
-
-### Templates & Defaults
-Consolidates Sync Template and Kiosk CRM 1 template/settings concepts at the workspace-default level.
-- Template Defaults
-- Document Templates
-- Invoice / Receipt Defaults
-- Email Template Defaults
-- Message Template Defaults
-- Sales / Order Form Defaults
-- Course / Certificate Defaults
-- Workflow Template Defaults
-- Naming / Numbering Sequences
-- Business Default Content
-
-Module-specific template libraries remain in their canonical modules. Settings stores defaults and organization-wide template policy rather than duplicating every template editor.
-
-### Notification Preferences
-- In-app
-- Email
-- SMS
-- WhatsApp / Configured Channels
-- Priority Preferences
-- Delivery Preferences
-- Quiet Hours
-- Digest Preferences
-
-The standalone Notifications module owns actual alerts, reminders and notification rules.
-
-### Integrations Shortcut
-Links to the standalone Integrations module without duplicating connection management.
-- Connected Apps Summary
-- Connection Health Summary
-- Open Integrations
-- Open Marketplace
-
-### Developer
-- Developer Overview
-- API Keys
-- API Explorer / Playground
-- API Documentation
-- Webhook Developer Tools
-- OAuth Applications
-- Access Tokens
-- API Usage
-- Rate Limits
-- Developer Logs
-
-### Audit & Compliance
-- Audit Log
-- User Activity
-- Login History
-- Permission Changes
-- Integration Changes
-- API Key Activity
-- Webhook Changes
-- Data Changes
-- Administrative Actions
-- Security Events
-
-### Security
-- Security Settings
-- 2FA
-- Login Policies
-- Sessions / Devices
-- Authentication Controls
-- Password / Access Policies
-
-### Preferences
-- Personal Preferences
-- Language
-- Date / Time
-- Display Preferences
-- Default Landing Page
-- Personal Work Defaults
-
-### System Configuration
-- Commerce Settings
-- Tax / Currency Rules
-- Numbering / Document Sequences
-- Business Defaults
-- Data / Import Defaults
-- Feature Configuration
-
-### Plans & Billing
-- Current Plan
-- Subscription
-- Usage
-- Billing History
-- KIOSK Invoices
-- Payment Method
-- Upgrade / Downgrade
-- Cancel Subscription
-
-Plans & Billing is what the KIOSK customer pays KIOSK for the software and stays separate from the customer's business Finance & Accounting records.
-
-### Settings source consolidation
-- Sync CRM Store Information → Settings → Organization & Business
-- Sync CRM Channel → Settings → Channels, with connection management in Inbox / Integrations
-- Sync CRM WordPress → Integrations → Commerce Connectors, with Settings shortcut/defaults
-- Sync CRM Template → Settings → Templates & Defaults, while module template editors remain canonical in their modules
-- Sync CRM Brand → Settings → Brand & Appearance → Brand
-- Kiosk CRM 2 Organization → Settings → Organization & Business
-- Kiosk CRM 2 Website → Settings → Website & CMS, with Build owning site creation/editing
-- Kiosk CRM 2 CMS → Settings → Website & CMS, with Build/content modules owning actual content editing
-- Kiosk CRM 1 Themes → Settings → Brand & Appearance → Appearance
-- Kiosk CRM 1 Settings → consolidated into the structured Settings module above
+Appearance is currently the implemented Settings workspace. Other settings groups are architecture/frontend framework until their dedicated UI and backend capabilities are built.
 
 ## Canonical ownership rules
+- AI Assistant = platform-wide conversational intelligence and orchestration through approved KIOSK actions.
+- AI Studio = full AI workspace, AI tools, installed skills, research/history/settings.
+- KIOSK modules = canonical business systems; AI does not replace module ownership.
+- Automation = persistent event-driven workflows; AI may prepare automations.
+- Integrations = external service/app/platform connections used by KIOSK and approved AI actions.
+- Settings → Audit & Compliance = permanent organization-wide audit trail, including executed AI actions.
 - Settings = workspace configuration, defaults, governance and preferences.
-- Settings → Organization & Business = business/store/organization identity and workspace defaults.
-- Settings → Brand & Appearance = brand identity plus KIOSK workspace appearance.
-- Settings → Website & CMS = website/CMS defaults and publishing configuration; Build owns creation/editing.
-- Settings → Channels = communication defaults/routing policy; Inbox and Integrations own channel operation/connectivity.
-- WordPress/WooCommerce connectivity = Integrations, not a second Settings integration system.
-- Settings → Templates & Defaults = organization-wide defaults; module-specific template editors remain with their modules.
 - Learning & Academy = courses, curriculum, enrollment, progress and certificates.
 - CRM = canonical person/contact identity.
 - Commerce = checkout/order/payment processing.
 - Build = customer-facing page/site/form builders.
 - Reports & Analytics = cross-business BI.
-- Integrations = external service/app/platform connections.
-- Settings → Developer = API keys/API Explorer/technical tooling.
-- Settings → Audit & Compliance = permanent organization-wide audit trail.
-- AI Studio = reusable AI capabilities.
 - Notifications = internal alerts/reminders.
 - Inbox = conversations with people.
 - Marketing = campaigns/content/promotions/advertising.
-- Automation = triggers/actions/orchestration.
 - Planning & Strategy = future plans/projections/roadmaps.
 - Finance & Accounting = actual money/accounting.
 - Venture = opportunity/offer discovery.
@@ -591,10 +493,8 @@ Plans & Billing is what the KIOSK customer pays KIOSK for the software and stays
 A capability has one canonical home but may have contextual entry points elsewhere.
 
 ## Operating model
-Settings: Organization → Brand → Website/CMS Defaults → Channels → Templates → Security → Preferences
-Website: Settings Defaults → Build Website/Storefront → Publish → Commerce/CRM
-Channel: Settings Policy → Integration Connection → Inbox Conversation / Marketing Broadcast
-WordPress: Settings Shortcut → Integrations → WordPress/WooCommerce Connection → Sync → Catalog/Commerce
+AI task: User Request → Current Context → Internal Data / Integrations / Files / External Research → AI Plan → Approved KIOSK Actions → Preview/Confirmation → Execute → Verify → Audit
+AI recurring task: User Request → AI Drafts Workflow → User Review → Automation → Future Executions → Audit
 Learning: CRM Contact → Enrollment → Course → Progress → Completion → Certificate
 Integration: Discover App → Install → Authorize → Configure → Connect → Sync → Monitor
 Strategy-to-results: Venture → Planning & Strategy → Operations / Build / Funnels / Marketing → CRM → Commerce → Finance → Reports
@@ -603,7 +503,12 @@ Strategy-to-results: Venture → Planning & Strategy → Operations / Build / Fu
 - Gift Cards — optional regional Commerce/Marketing feature; not primary for current target market.
 
 ## Deferred enhancement backlog
-- Build the remaining Settings panels as real React workspaces; Appearance is currently the only implemented Settings panel
+- Build global AI popup/drawer frontend and contextual mock states
+- Define reusable AI Autofill UI component/pattern
+- Build KIOSK Action Registry/backend permission enforcement later
+- Build AI approval/confirmation UI and audit integration
+- External research/source-provenance service later
+- Build remaining Settings panels; Appearance is currently implemented
 - Replace temporary DOM navigation bridges with direct React navigation/router
 - Generalize affiliate engine if Commerce/Marketing needs platform-wide affiliate selling
 - Real LMS media delivery, assessment grading and certificate verification backend
