@@ -12,6 +12,7 @@ import './customer-service-shell.css';
 import './people-admin-shell.css';
 import './operations-shell.css';
 import './growth-suite-shell.css';
+import './finance-planning-shell.css';
 import './dashboard-mount';
 import './commerce-shell';
 import './crm-shell';
@@ -20,6 +21,7 @@ import './customer-service-shell';
 import './people-admin-shell';
 import './operations-shell';
 import './growth-suite-shell';
+import './finance-planning-shell';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
