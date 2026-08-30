@@ -5,7 +5,9 @@ import './styles.css';
 import './appearance-enhancements.css';
 import './today.css';
 import './dashboard-customization.css';
+import './commerce-shell.css';
 import './dashboard-mount';
+import './commerce-shell';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
