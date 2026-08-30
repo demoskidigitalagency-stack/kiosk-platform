@@ -1,33 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from './App';
-import './styles.css';
-import './appearance-enhancements.css';
-import './today.css';
-import './dashboard-customization.css';
-import './commerce-shell.css';
-import './crm-shell.css';
-import './catalog-shell.css';
-import './customer-service-shell.css';
-import './people-admin-shell.css';
-import './operations-shell.css';
-import './growth-suite-shell.css';
-import './finance-planning-shell.css';
-import './insights-notifications-shell.css';
-import './integrations-shell.css';
-import './learning-academy-shell.css';
-import './dashboard-mount';
-import './commerce-shell';
-import './crm-shell';
-import './catalog-shell';
-import './customer-service-shell';
-import './people-admin-shell';
-import './operations-shell';
-import './growth-suite-shell';
-import './finance-planning-shell';
-import './insights-notifications-shell';
-import './integrations-shell';
-import './learning-academy-shell';
+import './unified-shell.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
