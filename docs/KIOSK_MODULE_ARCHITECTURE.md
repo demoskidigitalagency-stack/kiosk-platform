@@ -11,6 +11,7 @@ KIOSK is an e-commerce operating system for sellers. This document is the workin
 - Catalog — Structured
 - Purchasing — Framework
 - Venture — Structured
+- Planning & Strategy — Structured
 - Build — Framework
 - Funnels — Structured
 - Marketing & Growth — Structured
@@ -19,7 +20,7 @@ KIOSK is an e-commerce operating system for sellers. This document is the workin
 - Team — Structured
 - HR — Structured
 - Operations — Structured
-- Finance & Accounting — Framework
+- Finance & Accounting — Structured
 - Reports & Analytics — Framework
 - Automation — Structured
 - AI Studio — Structured
@@ -40,8 +41,6 @@ Commerce owns selling transactions and post-sale flow.
 - Fulfillment: Order Assignment, Shipping & Delivery
 - Store: Storefront
 
-Catalog owns products/inventory; Purchasing owns supply; Build owns visual storefront/page construction; CRM owns relationships.
-
 ## 3. CRM & Customers
 CRM owns contact identity, prospects, customers, companies, opportunities, attribution and relationship activity.
 - CRM Overview
@@ -55,8 +54,6 @@ CRM owns contact identity, prospects, customers, companies, opportunities, attri
 - Meetings: Meetings, Schedule Meeting, Meeting History
 - CRM Intelligence: Forecast, Pipeline Forecast, Lead & Deal Insights, Source & Campaign Attribution, Conversion Insights
 - Data & Customization: Custom Fields, Custom Objects, Merge Records, Data Cleanup Rules, Import Mapping
-
-Lifecycle: Contact → Lead → Qualify → Deal → Quote → Order → Payment → Customer → Retention
 
 ## 4. Catalog
 Catalog is the canonical sellable-product and stock system.
@@ -78,23 +75,117 @@ Catalog is the canonical sellable-product and stock system.
 Supply flow: Low Stock → Reorder Suggestion → Purchase Request → Purchase Order → Supplier → Receive → Inventory
 
 ## 6. Venture
-Venture owns business/product discovery, offer creation and launch preparation. Venture Forge is the branded AI workspace inside Venture.
+Venture owns business/product discovery, offer creation and launch preparation.
 - Venture Overview
 - Venture Forge
 - Discover: Niche Finder, Market Research, Competitor Research, Opportunity Finder
 - Offer: Offer Builder, Customer Persona, Value Proposition, Pricing Strategy, Offer Stack
 - Products: Product Ideas, Digital Product Generator, Digital Product Library
 - Funnel Generator
-- Launch Center: Launch Plan, Checklist, Calendar, Channel Strategy
+- Launch Center
 - Ads & Social Content
 - Export Center
 
-Handoffs: generated products → Catalog; funnels → Funnels; campaigns/content → Marketing; websites/pages → Build.
+Venture can hand selected opportunities to Planning & Strategy for formal business planning and modelling.
 
-Venture lifecycle: Niche → Offer → Product → Funnel → Content → Launch → Catalog → Commerce → CRM → Revenue
+## 7. Planning & Strategy
+Planning & Strategy owns forward-looking business planning, strategic analysis, financial modelling and execution roadmaps. Finance & Accounting remains the source of actual financial performance.
 
-## 7. Build
-Build owns general customer-facing construction infrastructure.
+### Strategy Overview
+- Active Plans
+- Strategic Goals
+- KPIs
+- Milestones
+- Risks
+- Progress
+- Upcoming Strategic Activities
+
+### Business Planning
+- Business Plan
+- Executive Summary
+- Company Overview
+- Products & Services
+- Target Market
+- Business Objectives
+- Financial Plan
+- Business Plan Templates
+
+### Market & Competitive Analysis
+- Market Analysis
+- Competitor Analysis
+- SWOT Analysis
+- Gap Analysis
+- Market Opportunity
+- Customer Analysis
+
+Venture may generate research or an opportunity; Planning & Strategy formalizes the selected direction without duplicating Venture discovery tools.
+
+### Business Model
+- Business Model Canvas
+- Value Proposition
+- Customer Segments
+- Revenue Streams
+- Cost Structure
+- Channels
+- Key Activities
+- Key Resources
+- Key Partners
+
+### Financial Models
+- Financial Model Overview
+- 5-Year Projection
+- Revenue Forecast
+- Expense Forecast
+- Cash Flow Projection
+- Profit Projection
+- Break-even Analysis
+- Discounted Cash Flow (DCF)
+- Scenario Planning
+- Burn Rate & Runway
+
+### Business-Specific Models
+- E-commerce Model
+- SaaS Model
+- Subscription Model
+- Retail Model
+- Service Business Model
+- Custom Model
+
+### KPI Dashboard
+KPIs adapt to the business model rather than forcing irrelevant metrics on every seller.
+- Revenue Growth
+- Gross Margin
+- Net Margin
+- Customer Acquisition Cost (CAC)
+- Lifetime Value (LTV)
+- Average Order Value (AOV)
+- Conversion Rate
+- Churn
+- Monthly / Annual Recurring Revenue (MRR / ARR)
+- Burn Rate
+- Runway
+
+### Execution Planning
+- Strategic Roadmap
+- Delivery Roadmap
+- Goals / Objectives
+- Initiatives
+- Milestones
+- Dependencies
+- Risks
+- Project Charter
+
+Project Charter defines why and what should be executed; an approved charter can create/link to Operations → Projects for execution.
+
+### Planning boundaries
+- Actual transactions, balances and accounting records belong to Finance & Accounting.
+- Venture discovers/generates opportunities; Planning formalizes selected opportunities.
+- Projects and tasks are executed in Operations.
+- Content Calendar belongs to Marketing & Growth, not general strategy planning.
+
+Planning lifecycle: Opportunity → Business Plan → Market Analysis → Business Model → Financial Model → Roadmap → Project Charter → Operations Project → Actual Results
+
+## 8. Build
 - Website Builder
 - Storefront Builder
 - Pages
@@ -111,10 +202,7 @@ Build owns general customer-facing construction infrastructure.
 - Store Themes
 - Theme Marketplace
 
-Funnels may use the same page/form builder engine without creating duplicate editors.
-
-## 8. Funnels
-Funnels owns conversion journeys built from reusable pages/forms.
+## 9. Funnels
 - Funnel Overview
 - All Funnels
 - Funnel Builder
@@ -127,40 +215,35 @@ Funnels owns conversion journeys built from reusable pages/forms.
 - Leads & Conversions
 - Funnel Settings
 
-Flow: Traffic → Landing Page → Form / Checkout → Contact → Lead → Deal / Order → Customer
-
-## 9. Marketing & Growth
-Marketing owns acquisition, campaigns, broadcasts, promotions, retention and advertising execution.
+## 10. Marketing & Growth
+Marketing owns acquisition, campaigns, broadcasts, promotions, retention, advertising and content execution.
 - Marketing Overview
-- Campaigns: All, New, Draft, Scheduled, Active, Completed, Analytics
+- Campaigns
 - Broadcasts: Email, SMS, WhatsApp, Telegram, Multi-channel
-- Audience & Targeting: CRM Segments, Smart Lists, Campaign Audiences
-- Templates & Content: Email, SMS, WhatsApp, Campaign Templates
+- Audience & Targeting
+- Templates & Content
+- Content: Content Calendar, Social Content, Email Content, Campaign Content, Scheduled Content, Content Library, Content Performance
 - Promotions: Discounts, Coupons, Promotion Rules
-- Loyalty & Rewards: Loyalty Program, Points, Rewards, Customer Rewards
+- Loyalty & Rewards
 - Recovery: Abandoned Carts, Recovery Campaigns, Win-back Campaigns
 - Experimentation: A/B Tests, Campaign Tests, Creative Tests
 - Advertising: Ad Campaigns, Ad Creative, Ad Research / Competitor Research, Meta Ads, Google Ads, Campaign Performance
 
-Gift Cards are optional/regional and are not a primary KIOSK feature for the current target market.
+Gift Cards remain optional/regional rather than a primary feature.
 
-## 10. Inbox & Communications
-Inbox owns conversations and channel connectivity; it does not own marketing campaigns.
+## 11. Inbox & Communications
 - Inbox Overview
 - All Conversations
 - My Conversations
 - Unassigned
 - Pinned
 - Channels: WhatsApp, Email, SMS, Facebook Messenger, Instagram DM, Telegram, Web Chat
-- Channel Setup: Connected Channels, WhatsApp Cloud API, QR Gateway, Connected Numbers, Email/SMS/Messenger/Instagram/Telegram/Web Chat setup
-- Conversation Management: Assignment, Teams/Agents, Tags, Internal Notes, Status, Contact Linking
-- Message Templates: WhatsApp Templates, Email Templates, SMS Templates, Saved Replies
+- Channel Setup
+- Conversation Management
+- Message Templates
 - Communication Analytics
 
-WhatsApp Inbox lives here; WhatsApp broadcasts live in Marketing. Authorized APIs/webhooks are required for external messaging/social channels.
-
-## 11. Customer Service
-Customer Service owns support cases and resolution workflows.
+## 12. Customer Service
 - Service Overview
 - Tickets & Helpdesk
 - Complaints
@@ -169,57 +252,121 @@ Customer Service owns support cases and resolution workflows.
 - Service Workspace
 - Service Reports
 
-Inbox owns the conversation/channel; Customer Service owns the ticket/complaint/SLA/resolution case.
-
-## 12. Team
-Team owns workspace membership, organization and access.
+## 13. Team
 - Team Overview
-- People: Users/Staff, Invite User, User Profile, Active/Inactive, Invitations
+- People
 - Teams & Departments
 - Roles & Permissions
-- Locations & Assignment: Staff Assignment, Delivery Agents, Location Access
-- Performance: Staff/Sales Performance, Goals, Leaderboard
+- Locations & Assignment
+- Performance
 - Team Communication: Team Chat, Announcements, Internal Updates
 
-## 13. HR
-HR owns the employee lifecycle.
+## 14. HR
 - HR Overview
 - Employee Directory
-- Attendance: Clock In/Out, Time Entries, Timesheets
+- Attendance
 - Shifts & Scheduling
 - Leave & Time Off
-- Payroll & Compensation: Compensation, Commissions, Bonuses, History
+- Payroll & Compensation
 - Performance Reviews
 - Documents & Policies
 - Onboarding
 - Offboarding
 
-## 14. Operations
+## 15. Operations
 Operations owns cross-business human work execution.
 - Operations Overview
-- Projects: Projects, Workspace, Status, Milestones, Members, Timeline, Files, Activity
-- Tasks: All, My, Assigned, Board, Priorities, Due Dates, Recurring, Completed, History
+- Projects
+- Tasks
 - Calendar
 - Meetings
 - Approvals
 - Operational Workflows / Checklists
-- Documents & E-Signature: Documents, Templates, Signature Requests, Awaiting Signature, Signed, Declined/Expired, Signers, History, Audit Trail
+- Documents & E-Signature
 - Locations / Branch Operations
 
-Automation owns event-driven machine workflows; Operations owns human/business process execution.
+## 16. Finance & Accounting
+Finance & Accounting owns actual business money, accounting records, cash movement and financial reporting. It records what actually happened; Planning & Strategy models what is expected to happen.
 
-## 15. Finance & Accounting
-- Accounting
+### Finance Overview
 - Revenue
 - Expenses
-- Cash Flow
-- Accounts
-- Daily Close
-- Taxes
-- Financial Statements
-- Reconciliation
+- Profit / Net Income
+- Cash Position
+- Outstanding Invoices
+- Payments Received
+- Receivables / Payables
+- Recent Transactions
 
-## 16. Reports & Analytics
+### Sales Finance
+- Revenue
+- Invoices
+- Receipts
+- Payments
+- Refunds
+- Credit Notes
+- Payment History
+
+Commerce may create or surface invoices/payments operationally, but Finance & Accounting is the canonical financial record and reporting layer.
+
+### Expenses
+- All Expenses
+- New Expense
+- Expense Categories
+- Recurring Expenses
+- Expense Attachments / Receipts
+- Expense History
+
+### Accounts & Wallets
+Designed for flexible payment environments including African markets.
+- Cash Accounts
+- Bank Accounts
+- Mobile Money
+- Wallets
+- Account Balances
+- Transfers
+- Transaction History
+
+### Accounting
+- Chart of Accounts
+- General Ledger
+- Journal Entries
+- Accounts Receivable
+- Accounts Payable
+- Reconciliation
+- Opening Balances
+- Accounting Periods
+
+### Cash Management
+- Cash In
+- Cash Out
+- Cash Drawer
+- Payouts
+- Daily Close
+- Opening / Closing Balance
+- Cash Variance
+
+### Taxes
+- Tax Rates
+- Tax Rules
+- Tax Summary
+- Tax Reports
+
+### Financial Reports
+- Profit & Loss
+- Balance Sheet
+- Cash Flow
+- Revenue Report
+- Expense Report
+- Payment Report
+- Receivables
+- Payables
+- Daily Sales / Close Report
+
+Finance flow: Order → Invoice → Payment → Receipt → Account / Wallet → Reconciliation → Accounting → Financial Report
+Expense flow: Expense → Payment → Account / Wallet → Accounting Entry → Financial Report
+
+## 17. Reports & Analytics
 - Sales
 - Orders
 - Products
@@ -231,16 +378,16 @@ Automation owns event-driven machine workflows; Operations owns human/business p
 - Team / Staff
 - HR
 - Finance
+- Planning vs Actual
 - Fulfillment
 - Customer Service
 - Projects / Tasks
 - Automation
 - Custom Reports
 
-## 17. Automation
-Automation owns event-driven orchestration used across KIOSK.
+## 18. Automation
 - Automation Overview
-- Workflows: All, Active, Paused, Drafts
+- Workflows
 - Workflow Builder
 - Trigger Library
 - Action Library
@@ -252,13 +399,7 @@ Automation owns event-driven orchestration used across KIOSK.
 - Errors / Failed Runs
 - Automation Analytics
 
-Example: Abandoned Cart → Wait → WhatsApp → Wait → Email → CRM Task.
-Example: New Lead → Assign Owner → Welcome Message → Follow-up Task → Pipeline Update.
-
-Operations can expose human workflows; Marketing, CRM, Commerce, HR and Customer Service can launch automations contextually while this remains the single automation engine.
-
-## 18. AI Studio
-AI Studio owns reusable AI capabilities available contextually across every module.
+## 19. AI Studio
 - AI Overview
 - AI Assistant
 - Content Generator
@@ -269,9 +410,7 @@ AI Studio owns reusable AI capabilities available contextually across every modu
 - AI Settings
 - AI History / Generations
 
-Examples: CRM summarizes a customer; Inbox suggests a reply; Marketing generates campaign content; Venture generates an offer; Funnels generates landing-page content; Customer Service summarizes a ticket. These are contextual entry points into the same AI capability.
-
-## 19. Integrations
+## 20. Integrations
 - Connected Apps
 - WooCommerce
 - WordPress
@@ -282,44 +421,46 @@ Examples: CRM summarizes a customer; Inbox suggests a reply; Marketing generates
 - Webhooks
 - Import / Export Connections
 
-## 20. Settings
-Settings owns workspace configuration, governance, preferences and security.
+## 21. Settings
+Settings owns workspace configuration, governance, preferences, security and KIOSK account billing.
 - Business & Workspace: Business Profile, Workspace, Location Configuration, Currency, Locale, Date/Time Defaults
 - Appearance & Branding: Appearance, Theme, Color Mode, Accent, Typography, Density, Layout, Surface Pattern, Custom Branding, Logo/Assets
-- Notifications: Notification, Email, SMS, Push/In-app Preferences and Rules
-- Security: Security Settings, 2FA, Login Policies, Sessions/Devices, Authentication Controls
+- Notifications
+- Security: 2FA, Login Policies, Sessions/Devices, Authentication Controls
 - Developer: API Keys, Webhook Configuration, Developer Settings, API Access Policies
-- Audit & Compliance: Audit Log, Login History, Security Events, Data Activity, Administrative Changes
-- Preferences: Personal Preferences, Language, Date/Time, Display Preferences
-- System Configuration: Templates, Commerce Settings, Tax, Currency Rules, Numbering/Document Sequences, Business Defaults
+- Audit & Compliance
+- Preferences
+- System Configuration
+- Plans & Billing: Current Plan, Subscription, Usage, Billing History, KIOSK Invoices, Payment Method, Upgrade/Downgrade, Cancel Subscription
+
+Plans & Billing represents what the KIOSK customer pays KIOSK for the software. It must remain separate from the customer's own Finance & Accounting records.
 
 Appearance is already implemented in the frontend with local persistence and remains the canonical visual-system configuration area.
 
 ## Canonical ownership rules
+- Planning & Strategy = future plans, projections, business models and strategic roadmaps.
+- Finance & Accounting = actual money, balances, accounting and financial reporting.
+- Venture = opportunity and offer discovery/generation.
+- Operations = execution through projects/tasks/approvals/documents.
+- Marketing = campaigns, broadcasts, content calendar, promotions and advertising.
 - Inbox = conversations/channels.
-- Marketing = campaigns/broadcasts/promotions/advertising.
 - Funnels = conversion journeys.
 - Automation = triggers/actions/orchestration.
-- Venture = opportunity, offer, product and launch ideation/preparation.
-- Build = reusable customer-facing construction tools.
 - AI Studio = reusable AI capabilities.
 - CRM = contact/customer identity and relationship history.
 - Commerce = selling transaction.
 - Catalog = products and stock truth.
 - Purchasing = procurement and receiving.
-- Operations = human work/projects/tasks/documents/approvals.
-- Settings = configuration/governance/security.
+- Settings = configuration, governance, security and KIOSK subscription billing.
 
 A capability has one canonical home but may have contextual entry points elsewhere. Do not create duplicate systems merely because a capability participates in several workflows.
 
 ## Operating model
+Strategy-to-results: Venture → Planning & Strategy → Operations / Build / Funnels / Marketing → CRM → Commerce → Finance → Reports
+Planning-to-execution: Business Plan → Financial Model → Roadmap → Project Charter → Operations Project → Actual Results → Plan vs Actual
+Finance: Transaction → Invoice/Expense → Payment → Account/Wallet → Accounting → Reconciliation → Financial Report
 Customer/revenue: Acquire → CRM → Sell → Pay → Fulfill → Account → Retain
 Product/revenue: Venture/Create → Catalog → Publish → Commerce → Order → Payment → Fulfillment → Revenue
-Growth: Discover → Offer → Funnel → Campaign → Conversation/Lead → CRM → Order → Revenue
-Communication: Channel → Conversation → Contact → Campaign/Service/Sales Context → Outcome
-Automation: Trigger → Conditions → Actions → Logs → Analytics
-People/access: Invite → Team/Department → Role → Location → Access Review → Deactivate
-Employee: Hire → Onboard → Schedule → Attendance → Performance → Compensation → Offboard
 
 ## Pending / regional placement
 - Gift Cards — optional regional Commerce/Marketing feature; not primary for current target market.
