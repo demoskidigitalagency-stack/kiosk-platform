@@ -4,6 +4,8 @@ import { App } from './App';
 import { installAppearanceNomenclature } from './appearance-nomenclature';
 import './unified-shell.css';
 import './appearance-shell-correction.css';
+import './appearance-system.css';
+import './appearance-system';
 
 installAppearanceNomenclature();
 
